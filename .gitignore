@@ -1,10 +1,18 @@
-# Ignore everything except for the main README files
+# Ignore everything except for the main README files -----
 
 *
-!/**/
-!readme.md
 !.gitignore
+!readme.md
+!/**/
 
-# Ignore README files from subdirectories
 
-**/**/*
+# Ignore files from individual projects -----
+
+Projects/**/*
+
+
+# Include drum part files -----
+
+!Beats/Parts/*.mid
+!Beats/Parts/*.md
+!Beats/Parts/*.mp3
