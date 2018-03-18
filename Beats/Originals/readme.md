@@ -1,14 +1,10 @@
-# Drum Parts
+# Original Beats
 
-Started in project 0034
-
------
-
-Each MIDI file here is a two-measure sequence that can be used to quickly start a drum beat.
+Contains homemade sound files and MIDI files.
 
 ## MIDI Mappings
 
-These MIDI files use these mappings, derived from an AKAI MPK mini controller: 
+The MIDI files use these mappings, derived from an AKAI MPK mini controller: 
 
 ```
 +------------+--------------+-------------+-------------+

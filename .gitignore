@@ -12,6 +12,7 @@ Projects/**/*
 
 # Include drum part files -----
 
-!Beats/Parts/*.mid
-!Beats/Parts/*.md
+!Beats/**/*.mid
+!Beats/**/*.midi
+!Beats/**/*.md
 !Beats/Parts/*.mp3
