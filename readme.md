@@ -13,13 +13,13 @@ Cooked up to standardize my music production work across multiple machines.
 
 * **Music Production**
     + **Archive** - _Old stuff that's not worth organizing_ 
+    + **Beats** - _Should contain MIDI files as well as sound files_
+        - Originals
+        - Copies
     + **Collaborations**
     + **Documentation** - _Guides or manuals on DAWs, VSTs, whatever_
         - Equipment
         - Reaper
-    + **Drum Beats** - _Should contain MIDI files as well as sound files_
-        - Originals
-        - Copies
     + **Jams** - _Freestyle brainstorms. Can be seen as a staging ground. Promising sounds can be promoted to a legit project._
     + **Projects** - _Could be sketches or "serious" projects_. Should be DAW-agnostic! Each folder can contain multiple reaper files/versions
         - 0235-quailhunt
@@ -48,7 +48,9 @@ This format has four elements:
 1. **Tempo** - Should be on every file, for easy beatmatching.
 1. **Version number**
 
-What happens when I get to project #`9999` and I have to make a new one? Just make a new projects folder and roll over to #`0001`. In that case, we'll have these two existing harmoniously:
+What happens when we get to project #`9999` and we have to make a new one? Increase the digit size and roll it over to #`00001`. So, from a four-digit number to an five-digit number. In that case, we'll have these two existing harmoniously:
 
-`Projects-01/9999-holycrapreally-112bpm-04.wav`   
-`Projects-02/0001-nowaydude-79bpm-01.wav`
+`Projects/9999-holycrapreally-112bpm-04.wav`   
+`Projects/00001-nowaydude-79bpm-01.wav`
+
+This shouldn't be a problem though. Say I made a project every day, starting from March 18, 2018. I'll get to project #`9999` on August 2, 2045.
