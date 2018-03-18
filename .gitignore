@@ -5,11 +5,10 @@
 !readme.md
 !/**/
 
-
 # Ignore files from individual projects -----
 
 Projects/**/*
-
+!Projects/*.md
 
 # Include drum part files -----
 
