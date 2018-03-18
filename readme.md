@@ -15,7 +15,8 @@ Cooked up to standardize my music production work across multiple machines.
     + **Archive** - _Old stuff that's not worth organizing_ 
     + **Beats** - _Should contain MIDI files as well as sound files_
         - Originals
-        - Copies
+        - Studies
+        - Parts
     + **Collaborations**
     + **Documentation** - _Guides or manuals on DAWs, VSTs, whatever_
         - Equipment
