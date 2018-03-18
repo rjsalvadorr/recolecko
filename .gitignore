@@ -19,6 +19,7 @@ Projects/**/*
 
 # Scripting files -----
 
+!Tech/*.cmd
+!Tech/*.sh
 !Tech/Scripts/*.json
 !Tech/Scripts/*.js
-!Tech/Scripts/*.txt

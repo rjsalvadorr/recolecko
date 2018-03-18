@@ -1,7 +1,0 @@
-..\..\Beats\Originals\0035-aardvarksnarl-01.mid
-..\..\Beats\Originals\0035-aardvarksnarl-76bpm-01.mp3
-..\..\Beats\Originals\0035-aardvarksnarl-80bpm-01.mp3
-..\..\Beats\Originals\0035-bustersword-01.mid
-..\..\Beats\Originals\0035-bustersword-79bpm-01.mp3
-..\..\Beats\Originals\0035-bustersword-87bpm-01.mp3
-..\..\Beats\Originals\0036-discreetpudding-01.mid
