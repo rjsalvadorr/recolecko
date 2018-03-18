@@ -16,3 +16,9 @@ Projects/**/*
 !Beats/**/*.midi
 !Beats/**/*.md
 !Beats/Parts/*.mp3
+
+# Scripting files -----
+
+!Tech/Scripts/*.json
+!Tech/Scripts/*.js
+!Tech/Scripts/*.txt
