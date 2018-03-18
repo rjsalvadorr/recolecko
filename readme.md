@@ -1,6 +1,22 @@
 # Music Production Structure
 
-Cooked up to standardize my music production work across multiple machines.
+A directory standard for music production work.
+
+## DESIGN, OVERVIEW, AND USAGE
+
+This project was basically prompted by a tragedy of losing some dope beats in a giant maze of files and folders. The goal of all this is to enable a producer to:
+
+1. Make projects often (Think agile!), without forgetting or being overwhelmed by organization.
+1. Keep track of all files derived from any project, and track the "lineage" of any musical file.
+1. Use an interactive inventory of items, sortable by tempo, project ID, etc.
+
+By having one consistent directory setup across different machines, it should be easier to organize and work on music.
+
+A consistent filename convention should make it easier to organize and keep track of files. Should also allow for scripting and detailed reports.
+
+### Usage
+
+Use the _Jams_ directory as a staging ground for _Projects_. Make a habit of listening through it!
 
 ## DIRECTORY STRUCTURE
 
@@ -18,7 +34,7 @@ Cooked up to standardize my music production work across multiple machines.
         - Studies
         - Parts
     + **Collaborations**
-    + **Documentation** - _Guides or manuals on DAWs, VSTs, whatever_
+    + **Documentation** - _Guides or manuals on DAWs, VSTs, physical equipment, whatever_
         - Equipment
         - Reaper
     + **Jams** - _Freestyle brainstorms. Can be seen as a staging ground. Promising sounds can be promoted to a legit project._
@@ -55,3 +71,30 @@ What happens when we get to project #`9999` and we have to make a new one? Incre
 `Projects/00001-nowaydude-79bpm-01.wav`
 
 This shouldn't be a problem though. Say I made a project every day, starting from March 18, 2018. I'll get to project #`9999` on August 2, 2045.
+
+## TECHNICAL CONSIDERATIONS
+
+### Item Reports
+
+A standard filename format allows for scripting and reporting. The main goal of all this: to ensure that I never lose a file again. Every item will have two identifiers (project ID and name), and therefore, two different ways to see what's related to it.
+
+For a basic thing, I see it like so:
+
+1. Scripts to read various filenames in the folders.
+    + Probably in Python
+    + Called through batch file and shell script
+1. Outputs a series of text files:
+    + files sorted by tempo
+    + files sorted by name
+    + files sorted by format
+    + CSV file with all that info. Fields in the report:
+        * id
+        * name
+        * tempo
+        * version
+        * path relative to root
+
+### Other Scripts
+
+1. Create jam folder using current date.
+1. Create next project folder.
