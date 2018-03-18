@@ -14,9 +14,13 @@ By having one consistent directory setup across different machines, it should be
 
 A consistent filename convention should make it easier to organize and keep track of files. Should also allow for scripting and detailed reports.
 
-### Usage
+### Usage, How-To
 
-Use the _Jams_ directory as a staging ground for _Projects_. Make a habit of listening through it!
+The `Beats/Parts/` folder has a collection of pre-made MIDI drum parts. These can be dropped into a DAW to build drum tracks. (See that folder's README for more details)
+
+The `Jams/` directory is meant to be a staging ground for `Projects/`. So promising jams can be promoted to be a _'real'_ project.
+
+Eventually, the `Tech/` folder will have executable scripts to show info on all the musical works within this framework.
 
 ## DIRECTORY STRUCTURE
 
