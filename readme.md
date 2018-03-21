@@ -4,59 +4,29 @@ A directory standard for music production work.
 
 ## DESIGN, OVERVIEW, AND USAGE
 
-This project was basically prompted by a tragedy of losing some dope beats in a giant maze of files and folders. The goal of all this is to enable a producer to:
+This project was prompted by the tragedy of losing dope beats in a maze of files and folders. The goal of all this is to enable a producer to:
 
-1. Make projects often (Think agile!), without forgetting or being overwhelmed by organization.
+1. Make projects often, while avoiding getting tangled in a mess of files.
 1. Keep track of all files derived from any project, and track the "lineage" of any musical file.
 1. Use an interactive inventory of items, sortable by tempo, project ID, etc.
+1. Become more productive, through reusable components like drum MIDI files.
 
-By having one consistent directory setup across different machines, it should be easier to organize and work on music.
+To accomplish this, I've laid out two ways to organize files for an eas music workflow.
 
-A consistent filename convention should make it easier to organize and keep track of files. Should also allow for scripting and detailed reports.
+1. By having **one consistent directory setup** across different machines, it should be easier to organize and work on music.
+1. **A consistent filename convention** should make it easier to organize and keep track of files. This should also allow for scripting and detailed reports.
+
+With these tools in hand, we can prevent useless tragedies from happening.
+
+_"RIP to all the lost beats. You are dearly missed."_
 
 ### Usage, How-To
 
-The `Beats/Parts/` folder has a collection of pre-made MIDI drum parts. These can be dropped into a DAW to build drum tracks. (See that folder's README for more details)
+The `Beats/Parts/` folder has a collection of pre-made MIDI drum parts. These can easily be dropped into a DAW to build drum tracks. (See that folder's README for more details)
 
-The `Jams/` directory is meant to be a staging ground for `Projects/`. So promising jams can be promoted to be a _'real'_ project.
+The `Jams/` directory can be used as a staging ground for `Projects/`. For example, a really good jam can be promoted to be a _'real'_ project.
 
-Eventually, the `Tech/` folder will have executable scripts to show info on all the musical works within this framework.
-
-## DIRECTORY STRUCTURE
-
-### Main goals of the directory structure design
-
-1. Should allow for consistent work across different environments. My machines aren't infallible, and I'll certainly be working across many.
-1. Should allow for scripting or tooling to keep track of files in a meaningful way.
-
-### Working standard
-
-* **Music Production**
-    + **Archive** - _Old stuff that's not worth organizing_ 
-    + **Beats** - _Should contain MIDI files as well as sound files_
-        - Originals
-        - Studies
-        - Parts
-    + **Collaborations**
-    + **Documentation** - _Guides or manuals on DAWs, VSTs, physical equipment, whatever_
-        - Equipment
-        - Reaper
-    + **Jams** - _Freestyle brainstorms. Can be seen as a staging ground. Promising sounds can be promoted to a legit project._
-    + **Projects** - _Could be sketches or "serious" projects_. Should be DAW-agnostic! Each folder can contain multiple reaper files/versions
-        - 0235-quailhunt
-            * readme.md
-        - 0236-otherblah
-            * readme.md
-        - 0237-randomting
-            * readme.md
-    + **Randoms**
-    + **Recordings** - _Sounds not associated to any project_
-    + **Reference** - _Tracks for comparing mix, style, levels, tuning, whatever_
-    + **Samples**
-    + **Soundfonts**
-    + **Tech** - _Files for complicated software magic. Could also house scripts._
-    + **Templates** - _DAW project templates_
-    + **VST**
+The `Tech/` folder has executable scripts to show info on all the musical works within this framework.
 
 ## FILENAME FORMAT
 
@@ -65,16 +35,59 @@ Model filename:
 This format has four elements:
 
 1. **Project ID** - Four digit number, easily trackable in any part of the process.
-1. **Name** - Could be a working title, could be a real one. Multiple-word names should be smashed together without spaces.
+1. **Name** - As a working title, this should take the form of _adjective_ + _noun_ (see below).
 1. **Tempo** - Should be on every file, for easy beatmatching.
 1. **Version number**
 
-What happens when we get to project #`9999` and we have to make a new one? Increase the digit size and roll it over to #`00001`. So, from a four-digit number to an five-digit number. In that case, we'll have these two existing harmoniously:
+Beats should have a one-word noun as a name. So a beat could be named:
 
-`Projects/9999-holycrapreally-112bpm-04.wav`   
-`Projects/00001-nowaydude-79bpm-01.wav`
+`0342-cabbage-92bpm-03.mid`
 
-This shouldn't be a problem though. Say I made a project every day, starting from March 18, 2018. I'll get to project #`9999` on August 2, 2045.
+Songs that use this beat can then modify the name with an adjective like so:
+
+`0343-saucycabbage-95bpm-02.mp3`
+`0429-frigidcabbage-103bpm-01.mp3`
+
+The _beat name_ then acts a lot like a _family name_. Using this convention, we'll have a few ways to track a piece of music and its lineage:
+
+1. Project ID
+1. Song name
+1. Beat name
+
+## DIRECTORY STRUCTURE
+
+### Main goals of the directory structure design
+
+1. Should allow for consistent work across different environments. My machines aren't infallible, and I'll certainly be working across many.
+1. Should allow for scripting or tooling to keep track of files in a meaningful way.
+
+### Current Standard
+
+```
+Music Production
+├───Archive - Old stuff that's not worth organizing
+├───Beats - Should contain MIDI files as well as sound files
+│   ├───Originals
+│   └───Parts
+├───Collaborations
+├───Documentation - Guides/manuals for DAWs, VSTs, real equipment
+├───Jams - Freestyles and brainstorms
+├───Projects - Actual projects. Should be DAW-agnostic. For example:
+│   ├───0235-quailhunt
+│   ├───0236-sampleproject
+│   ├───0235-braindump
+├───Randoms
+├───Recordings - Sounds not associated to any project
+├───Reference - Technical tracks for comparing mix, style, levels, tuning
+├───Samples
+├───Soundfonts
+├───Tech - Files for complicated software magic
+│   └───Scripts
+├───Templates - DAW project templates
+└───VST
+    ├───Effects
+    └───Instruments
+```
 
 ## TECHNICAL CONSIDERATIONS
 
@@ -102,3 +115,7 @@ For a basic thing, I see it like so:
 
 1. Create jam folder using current date.
 1. Create next project folder.
+
+## Misc / Random
+
+What happens when we get to project #`9999` and we have to make a new one? Increase the digit size and roll it over to #`00001`. So, from a four-digit number to an five-digit number. This shouldn't be a problem though. Say we made a project every day, starting from March 18, 2018. we'll get to project #`9999` on August 2, 2045.
