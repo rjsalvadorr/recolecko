@@ -67,8 +67,8 @@ The _beat name_ then acts a lot like a _family name_. Using this convention, we'
 Music Production
 ├───Archive - Old stuff that's not worth organizing
 ├───Beats - Should contain MIDI files as well as sound files
-│   ├───Originals
-│   └───Parts
+│   ├───OriginalBeats
+│   └───DrumParts
 ├───Collaborations
 ├───Documentation - Guides/manuals for DAWs, VSTs, real equipment
 ├───Jams - Freestyles and brainstorms
