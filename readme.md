@@ -86,7 +86,8 @@ Music Production
 ├───Templates - DAW project templates
 └───VST
     ├───Effects
-    └───Instruments
+    ├───Instruments
+    └───Samplers
 ```
 
 ## TECHNICAL CONSIDERATIONS
