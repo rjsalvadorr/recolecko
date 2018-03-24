@@ -1,11 +1,36 @@
-var debugMode = false;
+var DEBUG_MODE = false;
+var MUSIC_FILE_REGEX = /\d{4}-[-\w]+-(\d{2,3}bpm-)?\d+\.(wav|mp3|midi|mid)/gi;
 
 //////////
 
+// Parses filenames that match the regex
+var parseFilename = function(filename) {
+    var returnObj = {};
+    var juicyInfo = filename.split('.');
+    var juicyChunks = juicyInfo[0].split('-');
+    var finalIdx = juicyChunks.length - 1;
+
+    juicyChunks.forEach(function(chunk, idx) {
+        if(idx === 0 && chunk.match(/\d{4}/)) {
+            returnObj.projectId = chunk;
+        } else if(chunk.match(/\d{2,3}bpm/)) {
+            returnObj.tempo = chunk;
+        } else if(idx === finalIdx && chunk.match(/\d+/)) {
+            returnObj.version = chunk;
+        }
+    });
+
+    var nameChunks = juicyChunks.filter(function(chunk) {
+        return item !== returnObj.projectId && item !== returnObj.tempo && item !== returnObj.version;
+    })
+    returnObj.name = nameChunks.join('-');
+
+    return returnObj;
+}
+
 // Filter filenames based on regex
 var isMusicFile = function(filename) {
-    var re = /\d{4}-[-\w]+-(\d{2,3}bpm-)?\d+\.(wav|mp3|midi|mid)/gi;
-    if(filename.match(re)) {
+    if(filename.match(MUSIC_FILE_REGEX)) {
         return true;
     }
     return false;
@@ -46,7 +71,7 @@ var targetDir = path.join(__dirname, '../..');
 var fileList = walkSync(targetDir);
 var fileListString = convertListToString(fileList);
 
-if (debugMode) {
+if (DEBUG_MODE) {
     console.log('__dirname', __dirname);
     console.log('targetDir', targetDir);
     console.log('fileList', fileList);
