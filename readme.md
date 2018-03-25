@@ -1,26 +1,57 @@
 # Music Production Structure
 
-A directory standard for music production work.
+A useful file/folder standard for music production work.
 
-## DESIGN, OVERVIEW, AND USAGE
+## OVERVIEW & DESIGN
 
-This project was prompted by the tragedy of losing dope beats in a maze of files and folders. The goal of all this is to enable a producer to:
+This project was prompted by the tragedy of losing dope beats in a maze of files and folders. At the start of the project, the goal of all this was to enable a producer to:
 
 1. Make projects often, while avoiding getting tangled in a mess of files.
 1. Keep track of all files derived from any project, and track the "lineage" of any musical file.
-1. Use an interactive inventory of items, sortable by tempo, project ID, etc.
-1. Become more productive, through reusable components like drum MIDI files.
+1. Access an interactive inventory of items, sortable by tempo, project ID, etc.
 
-To accomplish this, I've laid out two ways to organize files for an eas music workflow.
+Turns out those aren't the only benefits. As I used this structure, it allowed me to take advantage of:
 
-1. By having **one consistent directory setup** across different machines, it should be easier to organize and work on music.
-1. **A consistent filename convention** should make it easier to organize and keep track of files. This should also allow for scripting and detailed reports.
+1. Quicker music-making through reusable components like drum MIDI files.
+1. Easier file backups since all my machines and backup drives have the same structure. _(drag n' drop FTW)_
+1. Easier process management through automated scripts for new jam/project folders.
 
-With these tools in hand, we can prevent useless tragedies from happening.
+To accomplish this, I've laid out two standards to organize files for an easier music workflow.
 
-_"RIP to all the lost beats. You are dearly missed."_
+1. **One consistent directory structure**, so different machines can have the same setup.
+1. **A consistent filename convention**, allowing for easy scripting and detailed reports.
 
-### Usage, How-To
+With these tools in hand, we can prevent senseless tragedies from happening time and time again.
+
+> _"This work is dedicated to all fallen music files. You are dearly missed."_
+
+## USAGE
+
+This section assumes:
+
+- You know how to use `Git` and `Node.JS` at a basic level.
+- You're on a Windows computer. `(Linux/Mac utilities are coming soon...)`
+
+### Minimal Usage
+
+For minimal use, do the following:
+
+1. Clone this repo
+
+That's it. You can then use this folder structure however you want, without bothering with any extra features.
+
+### Power Usage
+
+So you think you're a hotshot and you want to do some more software magic. Cool. Do this:
+
+1. Install `Node.JS` if you don't already have it.
+1. Clone the repo.
+1. Head to the `/Tech/` directory and run the `setup` script. `(TODO: add more details)`
+1. Use the scripts in the `/Tech/`directory to create new jam or project folders. `(TODO: add more details)`
+1. When creating files, **keep your filenames consistent, according to the standard (see below)**.
+1. If you want to see all the music files you have, go run the right script in `/Tech/`. The interactive inventory will then be shown in `/Tech/inventory.html`. `(TODO: add more details)`
+
+### Other Protips
 
 The `Beats/Parts/` folder has a collection of pre-made MIDI drum parts. These can easily be dropped into a DAW to build drum tracks. (See that folder's README for more details)
 
@@ -28,25 +59,24 @@ The `Jams/` directory can be used as a staging ground for `Projects/`. For examp
 
 The `Tech/` folder has executable scripts to show info on all the musical works within this framework.
 
-## FILENAME FORMAT
+## FILENAME CONVENTION
 
-Model filename:    
-`0132-whateverobject-98bpm-01.wav`    
+Consider this example filename: `34F40-whateverobject-98bpm-01.wav`    
 This format has four elements:
 
-1. **Project ID** - Four digit number, easily trackable in any part of the process.
+1. **Project ID** - A five hex-digit number, easily trackable in any part of the process.
 1. **Name** - As a working title, this should take the form of _adjective_ + _noun_ (see below).
 1. **Tempo** - Should be on every file, for easy beatmatching.
 1. **Version number**
 
 Beats should have a one-word noun as a name. So a beat could be named:
 
-`0342-cabbage-92bpm-03.mid`
+`35D98-cabbage-92bpm-03.mid`
 
 Songs that use this beat can then modify the name with an adjective like so:
 
-`0343-saucycabbage-95bpm-02.mp3`
-`0429-frigidcabbage-103bpm-01.mp3`
+`D436F-saucycabbage-95bpm-02.mp3`  
+`8D78E-frigidcabbage-103bpm-01.mp3`
 
 The _beat name_ then acts a lot like a _family name_. Using this convention, we'll have a few ways to track a piece of music and its lineage:
 
@@ -56,33 +86,28 @@ The _beat name_ then acts a lot like a _family name_. Using this convention, we'
 
 ## DIRECTORY STRUCTURE
 
-### Main goals of the directory structure design
-
-1. Should allow for consistent work across different environments. My machines aren't infallible, and I'll certainly be working across many.
-1. Should allow for scripting or tooling to keep track of files in a meaningful way.
-
-### Current Standard
+Each folder in this repository has a readme file, so we can see the intended purpose for each folder. Here's a good look at the folder structure and its intended usage:
 
 ```
-Music Production
+Music Production (or whatever you name this thing)
 ├───Archive - Old stuff that's not worth organizing
-├───Beats - Should contain MIDI files as well as sound files
+├───Beats - Can contain MIDI files as well as sound files
 │   ├───OriginalBeats
 │   └───DrumParts
 ├───Collaborations
 ├───Documentation - Guides/manuals for DAWs, VSTs, real equipment
 ├───Jams - Freestyles and brainstorms
 ├───Projects - Actual projects. Should be DAW-agnostic. For example:
-│   ├───0235-quailhunt
-│   ├───0236-sampleproject
-│   ├───0235-braindump
+│   ├───34F4C-quailhunt
+│   ├───AD634F-sampleproject
+│   ├───BF284-braindump
 ├───Randoms
 ├───Recordings - Sounds not associated to any project
 ├───Reference - Technical tracks for comparing mix, style, levels, tuning
 ├───Samples
 ├───Soundfonts
-├───Tech - Files for complicated software magic
-│   └───Scripts
+├───Tech - Files for music software, and utilities
+│   └───Scripts - Node.JS scripts that do the real work
 ├───Templates - DAW project templates
 └───VST
     ├───Effects
@@ -92,31 +117,8 @@ Music Production
 
 ## TECHNICAL CONSIDERATIONS
 
-### Item Reports
+The project uses Node.JS for a few reasons:
 
-A standard filename format allows for scripting and reporting. The main goal of all this: to ensure that I never lose a file again. Every item will have two identifiers (project ID and name), and therefore, two different ways to see what's related to it.
-
-For a basic thing, I see it like so:
-
-1. Scripts to read various filenames in the folders.
-    + Probably in Python
-    + Called through batch file and shell script
-1. Outputs a series of text files:
-    + files sorted by tempo
-    + files sorted by name
-    + files sorted by format
-    + CSV file with all that info. Fields in the report:
-        * id
-        * name
-        * tempo
-        * version
-        * path relative to root
-
-### Other Scripts
-
-1. Create jam folder using current date.
-1. Create next project folder.
-
-## Misc / Random
-
-What happens when we get to project #`9999` and we have to make a new one? Increase the digit size and roll it over to #`00001`. So, from a four-digit number to an five-digit number. This shouldn't be a problem though. Say we made a project every day, starting from March 18, 2018. we'll get to project #`9999` on August 2, 2045.
+- Super easy setup
+- Cross platform
+- Super hip at the time of writing (Early 2018)
