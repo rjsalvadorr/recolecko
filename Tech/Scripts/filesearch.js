@@ -1,4 +1,4 @@
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 var MUSIC_FILE_REGEX = /\d{4}-[-\w]+-(\d{2,3}bpm-)?\d+\.(wav|mp3|midi|mid)/gi;
 
 //////////
@@ -78,8 +78,9 @@ var convertListToString = function(filenameList) {
 //////////
 
 var path = require("path");
-var targetDir = path.join(__dirname, '../..');
-var fileList = walkSync(targetDir);
+var rootDirectory = path.join(__dirname, '../..');
+var dataLocation = path.join(__dirname, 'data');
+var fileList = walkSync( rootDirectory);
 var fileListString = convertListToString(fileList);
 var hackyMusicData = [];
 fileList.forEach(function (fname) {
@@ -88,28 +89,28 @@ fileList.forEach(function (fname) {
 
 if (DEBUG_MODE) {
     console.log('__dirname', __dirname);
-    console.log('targetDir', targetDir);
+    console.log('rootDirectory', rootDirectory);
     console.log('fileList', fileList);
     console.log('fileListString', fileListString);
     console.log('parseFilename', parseFilename('0012-whatever-thing-blah-98bpm-02'));
 }
 
-// Write to file!
+// Write to files!
 var fs = require('fs');
-fs.writeFile('data/music-inventory.csv', fileListString, function(err) {
+fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, function(err) {
     if(err) {
         return console.log(err);
     }
 });
 
-fs.writeFile('data/music-inventory.json', JSON.stringify(hackyMusicData, null, 2), function(err) {
+fs.writeFile(path.join(dataLocation, 'music-inventory.json'), JSON.stringify(hackyMusicData, null, 2), function(err) {
     if(err) {
         return console.log(err);
     }
 });
 
 var datafileString = 'var data = ' + JSON.stringify(hackyMusicData, null, 2) + ';\r\n';
-fs.writeFile('data/music-inventory-datafile.js', datafileString, function(err) {
+fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileString, function(err) {
     if(err) {
         return console.log(err);
     }
