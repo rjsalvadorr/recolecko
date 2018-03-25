@@ -46,13 +46,14 @@ So you think you're a hotshot and you want to do some more software magic. Cool.
 
 1. Install `Node.JS` if you don't already have it.
 1. Clone the repo.
-1. Head to the `/Tech/` directory and run the `setup` script. `(TODO: add more details)`
+1. Depending on your system, you'd use the scripts in `/Tech/UtilsWindows` or `/Tech/UtilsMacLinux`. They have the same tools with the same names, it's just the script type that differs.
+1. Head to your utils directory and run the `_setup-update` script.
 
 That's it for initial setup. For regular use:
 
-1. Use the scripts in the `/Tech/`directory to create new jam or project folders. `(TODO: add more details)`
+1. Use the `_new-jam-folder` script to create a new jam folder. The `_new-project-folder` script does the same thing, but for projects.
 1. When creating files, **try keep your filenames consistent, according to the standard (see below)**. The standard has some flexibility. For example, you can omit the tempo and version. But the ID and name should be there if you want to see an accurate file inventory.
-1. To see all the music files you have, go run the right script in `/Tech/`. The interactive inventory will then be available in `/Tech/inventory.html`. `(TODO: add more details)`
+1. To see all the music files you have, go to your utils folder and run the `_get-music-inventory` script. The interactive inventory will then be available in `inventory.html` in the utils.
 
 ### Other Protips
 
@@ -110,7 +111,9 @@ Music Production (or whatever you name this thing)
 ├───Samples
 ├───Soundfonts
 ├───Tech - Files for music software, and utilities
-│   └───Scripts - Node.JS scripts that do the real work
+│   ├───Scripts - Node.JS scripts that do the real work
+│   ├───UtilsMacLinux - Shell scripts for *NIX environments
+│   └───UtilsWindows - Shell scripts for Windows
 ├───Templates - DAW project templates
 └───VST
     ├───Effects
