@@ -21,5 +21,6 @@ Projects/**/*
 
 !Tech/*.cmd
 !Tech/*.sh
+!Tech/inventory.html
 !Tech/Scripts/*.json
 !Tech/Scripts/*.js

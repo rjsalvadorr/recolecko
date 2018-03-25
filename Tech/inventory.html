@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <link rel="manifest" href="site.webmanifest">
+      <link rel="apple-touch-icon" href="icon.png">
+      <!-- Place favicon.ico in the root directory -->
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.css">
+      <style>
+        body {
+          background-color: #dddddd;
+          color: #333333;
+          padding: 2rem 4rem;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #userdata {
+          width: 100%;
+        }
+      </style>
+    </head>
+    <body onload="load()">
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <h1>Music File Inventory</h1>
+
+        <div class="wrapper">
+          <div class="profile">
+            <table id="userdata" border="2">
+              <thead>
+                <th>Project ID</th>
+                <th>Name</th>
+                <th>Tempo</th>
+                <th>Version</th>
+                <th>Type</th>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
+        
+        <script type="text/javascript" src="Scripts/data/music-inventory-datafile.js"></script>
+        <script>
+          function load() {
+            
+            data.forEach(function(file) {
+                var tblRow = "<tr>" + "<td>" + file.projectId + "</td>" +
+                "<td>" + file.name + "</td>" + "<td>" + file.tempo + "</td>" + "<td>" + file.version + "</td>" + "<td>" + file.type.toUpperCase() + "</td>" + "</tr>"
+                $(tblRow).appendTo("#userdata tbody");
+            });
+
+            $.dynatableSetup({
+              dataset: {
+                perPageDefault: 1000,
+                perPageOptions: [1000,1200,1500,1750]
+              }
+            });
+            var dTable = $('#userdata').dynatable();
+          }
+        </script>
+    </body>
+</html>

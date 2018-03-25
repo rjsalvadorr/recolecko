@@ -96,13 +96,20 @@ if (DEBUG_MODE) {
 
 // Write to file!
 var fs = require('fs');
-fs.writeFile('music-inventory.csv', fileListString, function(err) {
+fs.writeFile('data/music-inventory.csv', fileListString, function(err) {
     if(err) {
         return console.log(err);
     }
 });
 
-fs.writeFile('music-inventory.json', JSON.stringify(hackyMusicData, null, 2), function(err) {
+fs.writeFile('data/music-inventory.json', JSON.stringify(hackyMusicData, null, 2), function(err) {
+    if(err) {
+        return console.log(err);
+    }
+});
+
+var datafileString = 'var data = ' + JSON.stringify(hackyMusicData, null, 2) + ';\r\n';
+fs.writeFile('data/music-inventory-datafile.js', datafileString, function(err) {
     if(err) {
         return console.log(err);
     }
