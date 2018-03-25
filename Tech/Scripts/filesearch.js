@@ -79,7 +79,6 @@ var convertListToString = function(filenameList) {
 
 var path = require("path");
 var rootDirectory = path.join(__dirname, '../..');
-var dataLocation = path.join(__dirname, 'data');
 var fileList = walkSync( rootDirectory);
 var fileListString = convertListToString(fileList);
 var hackyMusicData = [];
@@ -95,8 +94,15 @@ if (DEBUG_MODE) {
     console.log('parseFilename', parseFilename('0012-whatever-thing-blah-98bpm-02'));
 }
 
-// Write to files!
+// Create data location if it doesn't exist
 var fs = require('fs');
+var dataLocation = path.join(__dirname, 'data');
+if (!fs.existsSync(dataLocation)){
+    fs.mkdirSync(dataLocation);
+    console.log('Created \'Tech/Scripts/data/\' directory');
+}
+
+// Write to files!
 fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, function(err) {
     if(err) {
         return console.log(err);
