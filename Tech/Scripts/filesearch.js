@@ -1,11 +1,17 @@
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 var MUSIC_FILE_REGEX = /\d{4}-[-\w]+-(\d{2,3}bpm-)?\d+\.(wav|mp3|midi|mid)/gi;
 
 //////////
 
 // Parses filenames that match the regex
 var parseFilename = function(filename) {
-    var returnObj = {};
+    var returnObj = {
+        projectId: '',
+        tempo: '',
+        version: '',
+        name: '',
+        type: '',
+    };
     var juicyInfo = filename.split('.');
     var juicyChunks = juicyInfo[0].split('-');
     var finalIdx = juicyChunks.length - 1;
@@ -21,9 +27,10 @@ var parseFilename = function(filename) {
     });
 
     var nameChunks = juicyChunks.filter(function(chunk) {
-        return item !== returnObj.projectId && item !== returnObj.tempo && item !== returnObj.version;
+        return chunk !== returnObj.projectId && chunk !== returnObj.tempo && chunk !== returnObj.version;
     })
     returnObj.name = nameChunks.join('-');
+    returnObj.type = juicyInfo[1];
 
     return returnObj;
 }
@@ -49,7 +56,7 @@ var walkSync = function(dir, filelist) {
         }
         else {
             if(isMusicFile(file)) {
-                filelist.push(path.join(dir, file));
+                filelist.push(file);
             }
         }
     });
@@ -57,9 +64,13 @@ var walkSync = function(dir, filelist) {
 };
 
 var convertListToString = function(filenameList) {
-    listString = '';
+    var listString = 'PROJECT_ID,NAME,TEMPO,VERSION,TYPE\r\n';
+    var musicData = {};
+    var textLine = '';
     filenameList.forEach(function (fname) {
-        listString = listString.concat(fname, '\r\n');
+        musicData = parseFilename(fname);
+        textLine = musicData.projectId + ',' + musicData.name + ',' + musicData.tempo + ',' + musicData.version + ',' + musicData.type;
+        listString = listString.concat(textLine, '\r\n');
     });
     return listString;
 };
@@ -70,17 +81,28 @@ var path = require("path");
 var targetDir = path.join(__dirname, '../..');
 var fileList = walkSync(targetDir);
 var fileListString = convertListToString(fileList);
+var hackyMusicData = [];
+fileList.forEach(function (fname) {
+    hackyMusicData.push(parseFilename(fname));
+});
 
 if (DEBUG_MODE) {
     console.log('__dirname', __dirname);
     console.log('targetDir', targetDir);
     console.log('fileList', fileList);
     console.log('fileListString', fileListString);
+    console.log('parseFilename', parseFilename('0012-whatever-thing-blah-98bpm-02'));
 }
 
 // Write to file!
 var fs = require('fs');
-fs.writeFile('music-inventory.txt', fileListString, function(err) {
+fs.writeFile('music-inventory.csv', fileListString, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+});
+
+fs.writeFile('music-inventory.json', JSON.stringify(hackyMusicData, null, 2), function(err) {
     if(err) {
         return console.log(err);
     }
