@@ -42,14 +42,17 @@ That's it. You can then use this folder structure however you want, without both
 
 ### Power Usage
 
-So you think you're a hotshot and you want to do some more software magic. Cool. Do this:
+So you think you're a hotshot and you want to do some more software magic. Cool. Do this for setup:
 
 1. Install `Node.JS` if you don't already have it.
 1. Clone the repo.
 1. Head to the `/Tech/` directory and run the `setup` script. `(TODO: add more details)`
+
+That's it for initial setup. For regular use:
+
 1. Use the scripts in the `/Tech/`directory to create new jam or project folders. `(TODO: add more details)`
-1. When creating files, **keep your filenames consistent, according to the standard (see below)**.
-1. If you want to see all the music files you have, go run the right script in `/Tech/`. The interactive inventory will then be shown in `/Tech/inventory.html`. `(TODO: add more details)`
+1. When creating files, **try keep your filenames consistent, according to the standard (see below)**. The standard has some flexibility. For example, you can omit the tempo and version. But the ID and name should be there if you want to see an accurate file inventory.
+1. To see all the music files you have, go run the right script in `/Tech/`. The interactive inventory will then be available in `/Tech/inventory.html`. `(TODO: add more details)`
 
 ### Other Protips
 
