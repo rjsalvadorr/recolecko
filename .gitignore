@@ -19,8 +19,10 @@ Projects/**/*
 
 # Scripting files -----
 
-!Tech/*.cmd
-!Tech/*.sh
-!Tech/inventory.html
+!Tech/**/readme.md
+!Tech/UtilsWindows/*.cmd
+!Tech/UtilsMacLinux/*.sh
+!Tech/UtilsWindows/inventory.html
+!Tech/UtilsMacLinux/inventory.html
 !Tech/Scripts/*.json
 !Tech/Scripts/*.js
