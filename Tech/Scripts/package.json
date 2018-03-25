@@ -8,7 +8,9 @@
   },
   "author": "RJ Salvador",
   "license": "ISC",
+  "private": true,
   "dependencies": {
-    "moment": "^2.21.0"
+    "moment": "^2.21.0",
+    "sentencer": "^0.1.5"
   }
 }

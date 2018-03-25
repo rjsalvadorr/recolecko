@@ -6,28 +6,28 @@ var fs = require('fs');
 var Sentencer = require('sentencer');
 var TimestampGenerator = require('./timestamp');
 
-function createNewJamFolderName() {
-    // get current date/time
+function createNewProjectFolderName() {
+    // get a custom timestamp
     var timestampGen = new TimestampGenerator();
     var timestamp = timestampGen.getProjectTimestamp();
-    var date = timestampGen.getSimpleDate();
-    var folderName = date + '-' + timestamp;
+    var randomAdj = Sentencer.make('{{ adjective }}');
+    var folderName = timestamp + '-' + randomAdj;
     return folderName;
 }
 
-function createNewJamFolder() {
-    // create the folder, and add a README to it!
-    var jamName = createNewJamFolderName();
-    var targetPath = '../../Jams/' + jamName;
+function createNewProjectFolder() {
+    // create the folder!
+    var projName = createNewProjectFolderName()
+    var targetPath = '../../Projects/' + projName;
     var targetDir = path.join(__dirname, targetPath);
     if (!fs.existsSync(targetDir)){
         fs.mkdirSync(targetDir);
-        console.log('Created \'Jams/' + jamName + '\'');
+        console.log('Created \'Projects/' + projName + '\'');
     }
 }
 
 if(DEBUG_MODE) {
-    console.log('createNewJamFolderName() ', createNewJamFolderName());
+    console.log('createNewProjectFolderName() ', createNewProjectFolderName());
 }
 
-createNewJamFolder();
+createNewProjectFolder();
