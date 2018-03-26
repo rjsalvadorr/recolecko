@@ -1,3 +1,3 @@
 # Tech
 
-For scripting and non-VST plugins for a DAW.
+For any software-related files that don't fit anywhere else.

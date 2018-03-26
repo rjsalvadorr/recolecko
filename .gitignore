@@ -19,12 +19,12 @@ Projects/**/*
 
 # Scripting files -----
 
-!Tech/**/readme.md
-!Tech/UtilsWindows/*.cmd
-!Tech/UtilsMacLinux/*.sh
-!Tech/UtilsWindows/inventory.html
-!Tech/UtilsMacLinux/inventory.html
-!Tech/Scripts/PageContent/*.js
-!Tech/Scripts/PageContent/*.css
-!Tech/Scripts/*.json
-!Tech/Scripts/*.js
+!FileManagement/**/readme.md
+!FileManagement/UtilsWindows/*.cmd
+!FileManagement/UtilsMacLinux/*.sh
+!FileManagement/UtilsWindows/inventory.html
+!FileManagement/UtilsMacLinux/inventory.html
+!FileManagement/Scripts/PageContent/*.js
+!FileManagement/Scripts/PageContent/*.css
+!FileManagement/Scripts/*.json
+!FileManagement/Scripts/*.js
