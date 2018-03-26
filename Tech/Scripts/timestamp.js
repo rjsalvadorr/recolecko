@@ -15,6 +15,10 @@ class TimestampGenerator {
     getSimpleDate() {
         return this.moment().format('YYYY-MMM-DD');
     }
+    
+    getSimplerDate() {
+        return this.moment().format('MMM_DD_YYYY');
+    }
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
