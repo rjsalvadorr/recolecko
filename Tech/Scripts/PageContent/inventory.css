@@ -1,11 +1,71 @@
 
 body {
-  background-color: #dddddd;
-  color: #333333;
+  background-color: #222222;
+  color: #dddddd;
   padding: 2rem 4rem;
   font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.7px;
 }
 
-#userdata {
+/* table styling */
+
+table {
+  table-layout: fixed;
   width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #555555;
+  margin: 20px 0;
 }
+
+/* id */
+thead th:nth-child(1) {
+  width: 8%;
+}
+
+/* name */
+thead th:nth-child(2) {
+  width: 53%;
+}
+
+/* tempo */
+thead th:nth-child(3) {
+  width: 13%;
+}
+
+/* version */
+thead th:nth-child(4) {
+  width: 16%;
+}
+
+/* type */
+thead th:nth-child(5) {
+  width: 10%;
+}
+
+td {
+  padding: 8px;
+}
+
+#userdata tr:hover {
+  background-color: #333333;
+  font-weight: bold;
+}
+
+#userdata th {
+  background-color: #000957;
+}
+
+.dynatable-active-page {
+  background-color: #000b69;
+}
+
+#userdata th a {
+  padding: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: normal;
+  display: block;
+  letter-spacing: 2px;
+}
+
+/* end table styling */
