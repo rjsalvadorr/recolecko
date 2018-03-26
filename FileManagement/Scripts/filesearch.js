@@ -99,7 +99,7 @@ var fs = require('fs');
 var dataLocation = path.join(__dirname, 'data');
 if (!fs.existsSync(dataLocation)){
     fs.mkdirSync(dataLocation);
-    console.log('Created \'Tech/Scripts/data/\' directory');
+    console.log('Created \'FileManagement/Scripts/data/\' directory');
 }
 
 // Write to files!
@@ -108,12 +108,14 @@ fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, fun
         return console.log(err);
     }
 });
+console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.csv\'');
 
 fs.writeFile(path.join(dataLocation, 'music-inventory.json'), JSON.stringify(hackyMusicData, null, 2), function(err) {
     if(err) {
         return console.log(err);
     }
 });
+console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.json\'');
 
 var datafileString = 'var data = ' + JSON.stringify(hackyMusicData, null, 2) + ';\r\n';
 fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileString, function(err) {
@@ -121,3 +123,4 @@ fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileStr
         return console.log(err);
     }
 });
+console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.js\'');
