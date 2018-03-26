@@ -24,5 +24,7 @@ Projects/**/*
 !Tech/UtilsMacLinux/*.sh
 !Tech/UtilsWindows/inventory.html
 !Tech/UtilsMacLinux/inventory.html
+!Tech/Scripts/PageContent/*.js
+!Tech/Scripts/PageContent/*.css
 !Tech/Scripts/*.json
 !Tech/Scripts/*.js
