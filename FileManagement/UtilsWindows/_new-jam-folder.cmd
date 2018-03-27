@@ -2,7 +2,7 @@
 
 ECHO Generating new jam folder...
 
-node ../Scripts/newjamfolder.js
+node ../Scripts/newprojectfolder.js --jam
 
 ECHO New jam folder is ready!
 
