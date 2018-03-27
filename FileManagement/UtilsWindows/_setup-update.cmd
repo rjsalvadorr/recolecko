@@ -6,5 +6,3 @@ cd %~dp0\..\Scripts
 npm install
 
 ECHO Done!
-
-PAUSE

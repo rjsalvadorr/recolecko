@@ -40,18 +40,27 @@ class TimestampGenerator {
         return this.getTimestampMilliseconds().toString(16);
     }
 
+    getTwoCharID() {
+        // Should probably be in utils, but that may cause issues
+        // with circular dependency...
+        var length = 2;
+        var text = "";
+        var possible = "ABCDEFGHJKMNPQRSTUVWXYZ0123456789";
+        for(var i = 0; i < length; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+
     getProjectTimestamp() {
         var dayOfYear = this.moment().format('DDDD');
         var dayOfWeek = this.moment().format('E');
         var timeString = ''.concat(dayOfYear, dayOfWeek);
         var timeStringVal = parseInt(timeString, 10);
         var timeStringHex = timeStringVal.toString(16).toUpperCase();
+        var randomTwoCharId = this.getTwoCharID();
 
-        var randomNumber = this.getRandomInt(256);
-        var randomStringHex = randomNumber.toString(16).toUpperCase();
-        var randomStringHexPadded = this.padNumber(randomStringHex, 2);
-
-        var returnVal = ''.concat(timeStringHex, randomStringHexPadded);
+        var returnVal = ''.concat(timeStringHex, randomTwoCharId);
 
         if(DEBUG_MODE) {
             console.log('timeString', timeString);
@@ -59,7 +68,7 @@ class TimestampGenerator {
             console.log('returnVal', returnVal);
             console.log('randomNumber', randomNumber);
             console.log('randomStringHex', randomStringHex);
-            console.log('randomStringHexPadded', randomStringHexPadded);
+            console.log('randomTwoCharId', randomTwoCharId);
         }
 
         return returnVal;
