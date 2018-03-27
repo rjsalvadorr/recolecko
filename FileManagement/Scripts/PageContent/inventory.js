@@ -5,6 +5,8 @@ function colourRows() {
         $(this).closest('tr').css('background-color', '#570009');
     } else if ($(this).text() === 'WAV') {
       $(this).closest('tr').css('background-color', '#0A0A0A');
+    } else if ($(this).text() === 'RPP') {
+      $(this).closest('tr').css('background-color', '	#095700');
     }
   });
 }

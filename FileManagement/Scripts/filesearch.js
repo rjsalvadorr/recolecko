@@ -1,5 +1,5 @@
 var DEBUG_MODE = false;
-var MUSIC_FILE_REGEX = /(\d{4}|[0-9a-fA-F]{5})-[-\w]+-(\d{2,3}bpm-)?\d+\.(wav|mp3|midi|mid)/gi;
+var MUSIC_FILE_REGEX = /^(\d{4}|[0-9a-fA-F]{5})-[-\w]+(-\d{2,3}bpm)?(-\d{1,2})?\.(wav|mp3|midi|mid|rpp)$/gi;
 
 //////////
 
@@ -17,11 +17,11 @@ var parseFilename = function(filename) {
     var finalIdx = juicyChunks.length - 1;
 
     juicyChunks.forEach(function(chunk, idx) {
-        if(idx === 0 && (chunk.match(/\d{4}/) || chunk.match(/[0-9a-fA-F]{5}/))) {
+        if(idx === 0 && (chunk.match(/^\d{4}$/) || chunk.match(/^[0-9a-fA-F]{5}$/))) {
             returnObj.projectId = chunk;
-        } else if(chunk.match(/\d{2,3}bpm/)) {
+        } else if(chunk.match(/^\d{2,3}bpm$/)) {
             returnObj.tempo = chunk;
-        } else if(idx === finalIdx && chunk.match(/\d+/)) {
+        } else if(idx === finalIdx && chunk.match(/^\d{1,2}$/)) {
             returnObj.version = chunk;
         }
     });
