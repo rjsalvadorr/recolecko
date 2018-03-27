@@ -1,5 +1,7 @@
 var DEBUG_MODE = false;
-var MUSIC_FILE_REGEX = /^(\d{4}|[0-9a-fA-F]{5})-[-\w]+(-\d{2,3}bpm)?(-\d{1,2})?\.(wav|mp3|midi|mid|rpp)$/gi;
+
+var Constants = require('./constants');
+var constants = new Constants();
 
 //////////
 
@@ -37,7 +39,7 @@ var parseFilename = function(filename) {
 
 // Filter filenames based on regex
 var isMusicFile = function(filename) {
-    if(filename.match(MUSIC_FILE_REGEX)) {
+    if(filename.match(constants.MUSIC_FILE_REGEX)) {
         return true;
     }
     return false;
