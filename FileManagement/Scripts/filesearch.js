@@ -47,6 +47,8 @@ var isMusicFile = function(filename) {
 
 // See https://gist.github.com/kethinov/6658166
 // List all files in a directory in Node.js recursively in a synchronous fashion
+//
+// INFO::: FUNCTION COPIED INTO FOLDERMANAGER 
 var walkSync = function(dir, filelist) {
     var path = path || require('path');
     var fs = fs || require('fs'),

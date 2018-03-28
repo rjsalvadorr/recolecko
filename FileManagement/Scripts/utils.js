@@ -27,6 +27,26 @@ class Utils {
         
         return mdString;
     }
+    
+    convertListToStringBruh(filenameList) {
+        var listString = '';
+        var musicData = {};
+        var textLine = '';
+        filenameList.forEach(function (fname) {
+            musicData = parseFilename(fname);
+            textLine = musicData.projectId + ',' + musicData.name + ',' + musicData.tempo + ',' + musicData.version + ',' + musicData.type;
+            listString = listString.concat(textLine, CRLF);
+        });
+        return listString;
+    };
+
+    convertListToString(strList) {
+        var returnString = '';
+        strList.forEach(function (str) {
+            returnString = returnString.concat(str, CRLF);
+        });
+        return returnString;
+    };
 };
 
 module.exports = Utils;
