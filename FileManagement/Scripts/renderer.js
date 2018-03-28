@@ -5,6 +5,7 @@
 
 var Utils = require('./tools/utils');
 var FolderManager = require('./tools/foldermanager');
+var searchFiles = require('./tools/filesearch');
 
 var outputTextarea = document.querySelector('#output');
 
@@ -31,7 +32,8 @@ function handleRemoveEmptyProjects() {
 }
 
 function handleUpdateInventory() {
-  var outVal = 'handleUpdateInventory()';
+  var outVal = searchFiles();
+  outVal += 'Inventory updated!';
   outputTextarea.innerHTML += outVal + '\n';
 }
 
