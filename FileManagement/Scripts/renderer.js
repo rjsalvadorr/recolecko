@@ -13,27 +13,34 @@ function bindClickFunction(selector, func) {
 }
 
 function handleNewJamFolder() {
-  var outVal = 'handleNewJamFolder()';
-  outputTextarea.innerHTML = outVal;
+  var folderManager = new FolderManager();
+  var outVal = folderManager.createNewFolder(true);
+  outputTextarea.innerHTML += outVal + '\n';
 }
 
 function handleNewProjectFolder() {
-  var outVal = 'handleNewProjectFolder()';
-  outputTextarea.innerHTML = outVal;
+  var folderManager = new FolderManager();
+  var outVal = folderManager.createNewFolder(false);
+  outputTextarea.innerHTML += outVal + '\n';
 }
 
 function handleRemoveEmptyProjects() {
   var folderManager = new FolderManager();
   var outVal = folderManager.deleteEmptyFolders();
-  outputTextarea.innerHTML = outVal;
+  outputTextarea.innerHTML += outVal + '\n';
 }
 
 function handleUpdateInventory() {
   var outVal = 'handleUpdateInventory()';
-  outputTextarea.innerHTML = outVal;
+  outputTextarea.innerHTML += outVal + '\n';
+}
+
+function handleClearOutput() {
+  outputTextarea.innerHTML = '';
 }
 
 bindClickFunction('#btnNewJamFolder', handleNewJamFolder);
 bindClickFunction('#btnNewProjectFolder', handleNewProjectFolder);
 bindClickFunction('#btnRemoveEmptyProjects', handleRemoveEmptyProjects);
 bindClickFunction('#btnUpdateInventory', handleUpdateInventory);
+bindClickFunction('#btnClearOutput', handleClearOutput);

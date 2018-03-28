@@ -5,11 +5,13 @@ var CRLF = '\r\n';
 var path = require('path');
 var fs = require('fs');
 var rimraf = require('rimraf');
+var Sentencer = require('sentencer');
 
 var Utils = require('./utils');
 var utils = new Utils()
 var Constants = require('./constants');
 var constants = new Constants();
+var TimestampGenerator = require('./timestamp');
 
 function flatten(lists) {
   return lists.reduce((a, b) => a.concat(b), []);
@@ -27,6 +29,44 @@ function getDirectoriesRecursive(srcpath) {
 
 class FolderManager {
     constructor() {
+    }
+
+    createNewProjectFolderName(timestamp) {
+      var randomAdj = Sentencer.make('{{ adjective }}');
+      var folderName = timestamp + '-' + randomAdj;
+      return folderName;
+    }
+
+    createNewFolder(isJam) {
+      // create the folder!
+      // use a custom timestamp, and use that to name the folder
+      var timestampGen = new TimestampGenerator();
+      var timestamp = timestampGen.getProjectTimestamp();
+      // TODO: fix this shitty pathing. Use the constant ROOT_PATH somehow.
+      var shortDest = isJam ? 'Jams/' : 'Projects/';
+      var destination = '../../../' + shortDest;
+      var projName = this.createNewProjectFolderName(timestamp)
+      var targetPath = destination + projName;
+      var targetDir = path.join(__dirname, targetPath);
+      var outString = '';
+  
+      if (!fs.existsSync(targetDir)){
+          fs.mkdirSync(targetDir);
+          console.log('Created \'' + shortDest + projName + '\'');
+          outString += 'Created \'' + shortDest + projName + '\'';
+      }
+  
+      // create the readme template
+      var utils = new Utils();
+      var defaultMarkdownContent = utils.getMarkdownFileContents(projName);
+      var filename = projName + '.md'
+      fs.writeFile(path.join(targetDir, filename), defaultMarkdownContent, function(err) {
+          if(err) {
+              console.log(err);
+              return err;
+          }
+      });
+      return outString;
     }
 
     isDirectoryEmpty(path) {
@@ -84,6 +124,8 @@ class FolderManager {
           if(err) {
             console.log('Folder deletion failed. See:');
             console.log(err);
+            outString += 'Folder deletion failed. See:\n';
+            outString += JSON.stringify(err);
           }
         });
       }
