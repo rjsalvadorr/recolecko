@@ -19,7 +19,7 @@ var parseFilename = function(filename) {
     var finalIdx = juicyChunks.length - 1;
 
     juicyChunks.forEach(function(chunk, idx) {
-        if(idx === 0 && (chunk.match(/^\d{4}$/) || chunk.match(/^[0-9a-fA-F]{5}$/))) {
+        if(idx === 0 && (chunk.match(/^\d{4}$/) || chunk.match(/^[0-9A-F]{3}[0-9A-Z]{2}$/))) {
             returnObj.projectId = chunk;
         } else if(chunk.match(/^\d{2,3}bpm$/)) {
             returnObj.tempo = chunk;

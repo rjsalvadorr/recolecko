@@ -9,13 +9,15 @@
 
 Projects/**/*
 !Projects/*.md
+Jams/**/*
 
 # Include drum part files -----
 
-!Beats/**/*.md
+!Beats/DrumParts/*.md
 !Beats/DrumParts/*.mid
 !Beats/DrumParts/*.midi
 !Beats/DrumParts/*.mp3
+!Beats/OriginalBeats/*.md
 
 # Scripting files -----
 
