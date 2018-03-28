@@ -24,17 +24,17 @@ thead th:nth-child(1) {
 
 /* name */
 thead th:nth-child(2) {
-  width: 53%;
+  width: 20%;
 }
 
 /* tempo */
 thead th:nth-child(3) {
-  width: 13%;
+  width: 12%;
 }
 
 /* version */
 thead th:nth-child(4) {
-  width: 16%;
+  width: 8%;
 }
 
 /* type */
@@ -42,8 +42,18 @@ thead th:nth-child(5) {
   width: 10%;
 }
 
+/* path */
+thead th:nth-child(6) {
+  width: 42%;
+}
+
 td {
   padding: 8px;
+}
+
+tr td:nth-child(6) {
+  font-size: 0.75em;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #userdata tr:hover {
@@ -60,10 +70,10 @@ td {
 }
 
 #userdata th a {
-  padding: 15px;
+  padding: 15px 5px;
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: normal;
+  font-weight: bold;
   display: block;
   letter-spacing: 2px;
 }

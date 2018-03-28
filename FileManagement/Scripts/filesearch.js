@@ -1,4 +1,6 @@
 var DEBUG_MODE = false;
+var path = path || require('path');
+var fs = fs || require('fs');
 
 var Constants = require('./constants');
 var constants = new Constants();
@@ -6,7 +8,7 @@ var constants = new Constants();
 //////////
 
 // Parses filenames that match the regex
-var parseFilename = function(filename) {
+var parseFilename = function(filePath) {
     var returnObj = {
         projectId: '',
         tempo: '',
@@ -14,6 +16,8 @@ var parseFilename = function(filename) {
         name: '',
         type: '',
     };
+    var fileInfo = path.parse(filePath);
+    var filename = fileInfo.base;
     var juicyInfo = filename.split('.');
     var juicyChunks = juicyInfo[0].split('-');
     var finalIdx = juicyChunks.length - 1;
@@ -33,6 +37,7 @@ var parseFilename = function(filename) {
     })
     returnObj.name = nameChunks.join('-');
     returnObj.type = juicyInfo[1];
+    returnObj.path = filePath;
 
     return returnObj;
 }
@@ -48,11 +53,9 @@ var isMusicFile = function(filename) {
 // See https://gist.github.com/kethinov/6658166
 // List all files in a directory in Node.js recursively in a synchronous fashion
 //
-// INFO::: FUNCTION COPIED INTO FOLDERMANAGER 
 var walkSync = function(dir, filelist) {
-    var path = path || require('path');
-    var fs = fs || require('fs'),
-        files = fs.readdirSync(dir);
+    var files = fs.readdirSync(dir);
+    var truncatedDir = '';
     filelist = filelist || [];
     files.forEach(function(file) {
         if (fs.statSync(path.join(dir, file)).isDirectory()) {
@@ -60,7 +63,8 @@ var walkSync = function(dir, filelist) {
         }
         else {
             if(isMusicFile(file)) {
-                filelist.push(file);
+                truncatedDir = dir.replace(constants.ROOT_PATH, '');
+                filelist.push(path.join(truncatedDir, file));
             }
         }
     });
@@ -68,12 +72,12 @@ var walkSync = function(dir, filelist) {
 };
 
 var convertListToString = function(filenameList) {
-    var listString = 'PROJECT_ID,NAME,TEMPO,VERSION,TYPE\r\n';
+    var listString = 'PROJECT_ID,NAME,TEMPO,VERSION,TYPE,PATH\r\n';
     var musicData = {};
     var textLine = '';
     filenameList.forEach(function (fname) {
         musicData = parseFilename(fname);
-        textLine = musicData.projectId + ',' + musicData.name + ',' + musicData.tempo + ',' + musicData.version + ',' + musicData.type;
+        textLine = musicData.projectId + ',' + musicData.name + ',' + musicData.tempo + ',' + musicData.version + ',' + musicData.type + ',' + musicData.path;
         listString = listString.concat(textLine, '\r\n');
     });
     return listString;
@@ -81,9 +85,8 @@ var convertListToString = function(filenameList) {
 
 //////////
 
-var path = require("path");
 var rootDirectory = path.join(__dirname, '../..');
-var fileList = walkSync( rootDirectory);
+var fileList = walkSync(rootDirectory);
 var fileListString = convertListToString(fileList);
 var hackyMusicData = [];
 fileList.forEach(function (fname) {

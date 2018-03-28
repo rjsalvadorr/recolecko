@@ -11,35 +11,6 @@ var utils = new Utils()
 var Constants = require('./constants');
 var constants = new Constants();
 
-// Filter filenames based on regex
-var isMusicFile = function(filename) {
-  if(filename.match(constants.MUSIC_FILE_REGEX)) {
-      return true;
-  }
-  return false;
-};
-
-// See https://gist.github.com/kethinov/6658166
-// List all files in a directory in Node.js recursively in a synchronous fashion
-function searchDirectoriesForFiles(dir, filelist, printFiles) {
-  var files = fs.readdirSync(dir);
-  filelist = filelist || [];
-  files.forEach(function(file) {
-      if (fs.statSync(path.join(dir, file)).isDirectory()) {
-          filelist = searchDirectoriesForFiles(path.join(dir, file), filelist, printFiles);
-      }
-      else {
-        if(isMusicFile(file)) {
-          filelist.push(file);
-          if (printFiles) {
-              console.log(file);
-          }
-        }
-      }
-  });
-  return filelist;
-};
-
 function flatten(lists) {
   return lists.reduce((a, b) => a.concat(b), []);
 }
