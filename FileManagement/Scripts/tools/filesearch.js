@@ -85,8 +85,7 @@ var convertListToString = function(filenameList) {
 
 //////////
 
-var rootDirectory = path.join(__dirname, '../..');
-var fileList = walkSync(rootDirectory);
+var fileList = walkSync(constants.ROOT_PATH);
 var fileListString = convertListToString(fileList);
 var hackyMusicData = [];
 fileList.forEach(function (fname) {
@@ -95,7 +94,6 @@ fileList.forEach(function (fname) {
 
 if (DEBUG_MODE) {
     console.log('__dirname', __dirname);
-    console.log('rootDirectory', rootDirectory);
     console.log('fileList', fileList);
     console.log('fileListString', fileListString);
     console.log('parseFilename', parseFilename('0012-whatever-thing-blah-98bpm-02'));
@@ -103,7 +101,7 @@ if (DEBUG_MODE) {
 
 // Create data location if it doesn't exist
 var fs = require('fs');
-var dataLocation = path.join(__dirname, 'data');
+var dataLocation = path.join(constants.ROOT_PATH, '/FileManagement/Scripts/data');
 if (!fs.existsSync(dataLocation)){
     fs.mkdirSync(dataLocation);
     console.log('Created \'FileManagement/Scripts/data/\' directory');
