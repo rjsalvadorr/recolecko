@@ -2,9 +2,10 @@
   "name": "rj-music-prod",
   "version": "1.0.0",
   "description": "Scripts for music production inventories",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-app": "electron ."
   },
   "author": "RJ Salvador",
   "license": "ISC",
@@ -13,5 +14,8 @@
     "moment": "^2.21.0",
     "rimraf": "^2.6.2",
     "sentencer": "^0.1.5"
+  },
+  "devDependencies": {
+    "electron": "^1.8.4"
   }
 }
