@@ -2,11 +2,11 @@
 function colourRows() {
   $('#userdata tr td').each(function() {
     if ($(this).text() === 'MIDI' || $(this).text() === 'MID') {
-        $(this).closest('tr').css('background-color', '#570009');
+      $(this).closest('tr').addClass('row-midi');
     } else if ($(this).text() === 'WAV') {
-      $(this).closest('tr').css('background-color', '#0A0A0A');
+      $(this).closest('tr').addClass('row-wav');
     } else if ($(this).text() === 'RPP') {
-      $(this).closest('tr').css('background-color', '	#095700');
+      $(this).closest('tr').addClass('row-rpp');
     }
   });
 }
