@@ -69,11 +69,17 @@ class FolderManager {
     deleteEmptyFolders() {
       var folderList = this.findEmptyFolders();
       var currentFolder = '';
+      var outString = '';
+
       if(folderList.length === 0) {
-        console.log('No empty folders detected\n');
+        outString = 'No empty folders detected\n';
+        console.log(outString);
+        return outString;
       }
+
       for (var i = 0; i < folderList.length; i++) {
         console.log('Deleting ' + folderList[i]);
+        outString += 'Deleting ' + folderList[i] + '\n';
         rimraf(folderList[i], function(err) {
           if(err) {
             console.log('Folder deletion failed. See:');
@@ -83,13 +89,10 @@ class FolderManager {
       }
       if(folderList.length > 0) {
         console.log('Empty folders deleted!\n');
+        outString += 'Empty folders deleted!\n';
       }
+      return outString;
     }
 };
 
 module.exports = FolderManager;
-
-//////////
-
-var folderManager = new FolderManager();
-folderManager.deleteEmptyFolders();

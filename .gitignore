@@ -24,6 +24,7 @@ Jams/**/*
 !FileManagement/**/readme.md
 !FileManagement/*.cmd
 !FileManagement/*.sh
+!FileManagement/Scripts/index.html
 !FileManagement/Scripts/inventory.html
 !FileManagement/Scripts/*.js
 !FileManagement/Scripts/*.json

@@ -4,6 +4,7 @@
 // All of the Node.js APIs are available in this process.
 
 var Utils = require('./tools/utils');
+var FolderManager = require('./tools/foldermanager');
 
 var outputTextarea = document.querySelector('#output');
 
@@ -22,7 +23,8 @@ function handleNewProjectFolder() {
 }
 
 function handleRemoveEmptyProjects() {
-  var outVal = 'handleRemoveEmptyProjects()';
+  var folderManager = new FolderManager();
+  var outVal = folderManager.deleteEmptyFolders();
   outputTextarea.innerHTML = outVal;
 }
 
