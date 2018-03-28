@@ -22,11 +22,13 @@ Jams/**/*
 # Scripting files -----
 
 !FileManagement/**/readme.md
-!FileManagement/UtilsWindows/*.cmd
-!FileManagement/UtilsMacLinux/*.sh
-!FileManagement/UtilsWindows/inventory.html
-!FileManagement/UtilsMacLinux/inventory.html
+!FileManagement/*.cmd
+!FileManagement/*.sh
+!FileManagement/Scripts/index.html
+!FileManagement/Scripts/inventory.html
+!FileManagement/Scripts/*.js
+!FileManagement/Scripts/*.json
+!FileManagement/Scripts/tools/*.js
+!FileManagement/Scripts/tools/*.json
 !FileManagement/Scripts/PageContent/*.js
 !FileManagement/Scripts/PageContent/*.css
-!FileManagement/Scripts/*.json
-!FileManagement/Scripts/*.js

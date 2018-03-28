@@ -83,51 +83,61 @@ var convertListToString = function(filenameList) {
     return listString;
 };
 
-//////////
+function searchFiles() {
+    var fileList = walkSync(constants.ROOT_PATH);
+    var fileListString = convertListToString(fileList);
+    var hackyMusicData = [];
+    fileList.forEach(function (fname) {
+        hackyMusicData.push(parseFilename(fname));
+    });
+    var outString = '';
 
-var rootDirectory = path.join(__dirname, '../..');
-var fileList = walkSync(rootDirectory);
-var fileListString = convertListToString(fileList);
-var hackyMusicData = [];
-fileList.forEach(function (fname) {
-    hackyMusicData.push(parseFilename(fname));
-});
+    if (DEBUG_MODE) {
+        console.log('__dirname', __dirname);
+        console.log('fileList', fileList);
+        console.log('fileListString', fileListString);
+        console.log('parseFilename', parseFilename('0012-whatever-thing-blah-98bpm-02'));
+    }
 
-if (DEBUG_MODE) {
-    console.log('__dirname', __dirname);
-    console.log('rootDirectory', rootDirectory);
-    console.log('fileList', fileList);
-    console.log('fileListString', fileListString);
-    console.log('parseFilename', parseFilename('0012-whatever-thing-blah-98bpm-02'));
+    // Create data location if it doesn't exist
+    var fs = require('fs');
+    var dataLocation = path.join(constants.ROOT_PATH, '/FileManagement/Scripts/data');
+    if (!fs.existsSync(dataLocation)){
+        fs.mkdirSync(dataLocation);
+        console.log('Created \'FileManagement/Scripts/data/\' directory');
+        outString += 'Created \'FileManagement/Scripts/data/\' directory\n';
+    }
+
+    // Write to files!
+    fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, function(err) {
+        if(err) {
+            console.log(err);
+            return err;
+        }
+    });
+    console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.csv\'');
+    outString += 'Updated \'FileManagement/Scripts/data/music-inventory.csv\'\n';
+
+    fs.writeFile(path.join(dataLocation, 'music-inventory.json'), JSON.stringify(hackyMusicData, null, 2), function(err) {
+        if(err) {
+            console.log(err);
+            return err;
+        }
+    });
+    console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.json\'');
+    outString += 'Updated \'FileManagement/Scripts/data/music-inventory.json\'\n';
+
+    var datafileString = 'var data = ' + JSON.stringify(hackyMusicData, null, 2) + ';\r\n';
+    fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileString, function(err) {
+        if(err) {
+            console.log(err);
+            return err;
+        }
+    });
+    console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.js\'');
+    outString += 'Updated \'FileManagement/Scripts/data/music-inventory.js\'\n';
+
+    return outString;
 }
 
-// Create data location if it doesn't exist
-var fs = require('fs');
-var dataLocation = path.join(__dirname, 'data');
-if (!fs.existsSync(dataLocation)){
-    fs.mkdirSync(dataLocation);
-    console.log('Created \'FileManagement/Scripts/data/\' directory');
-}
-
-// Write to files!
-fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-});
-console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.csv\'');
-
-fs.writeFile(path.join(dataLocation, 'music-inventory.json'), JSON.stringify(hackyMusicData, null, 2), function(err) {
-    if(err) {
-        return console.log(err);
-    }
-});
-console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.json\'');
-
-var datafileString = 'var data = ' + JSON.stringify(hackyMusicData, null, 2) + ';\r\n';
-fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileString, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-});
-console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.js\'');
+module.exports = searchFiles;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Music File Manager</title>
+    <link rel="stylesheet" type="text/css" href="PageContent/index.css"/>
+  </head>
+  <body>
+    <h1>Music File Manager</h1>
+
+    <input class="btn" id="btnNewProjectFolder" type="button" value="New Project Folder" />
+    <input class="btn" id="btnNewJamFolder" type="button" value="New Jam Folder" />
+    <input class="btn" id="btnRemoveEmptyProjects" type="button" value="Remove Empty Projects" />
+    <input class="btn" id="btnUpdateInventory" type="button" value="Update Inventory" />
+    <input class="btn" id="btnClearOutput" type="button" value="Clear Output" />
+    
+    <pre id="output"></pre>
+    
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>
