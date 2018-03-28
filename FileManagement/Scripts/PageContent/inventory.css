@@ -63,6 +63,9 @@ tr td:nth-child(6) {
 
 #userdata th {
   background-color: #000957;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .dynatable-active-page {
@@ -72,10 +75,7 @@ tr td:nth-child(6) {
 #userdata th a {
   padding: 15px 5px;
   text-decoration: none;
-  text-transform: uppercase;
-  font-weight: bold;
   display: block;
-  letter-spacing: 2px;
 }
 
 /* end table styling */
