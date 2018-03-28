@@ -2,7 +2,7 @@
 
 ECHO Generating new project folder...
 
-node ../Scripts/newprojectfolder.js
+node Scripts/tools/newprojectfolder.js
 
 ECHO New project folder is ready!
 

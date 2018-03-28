@@ -7,6 +7,8 @@ var Sentencer = require('sentencer');
 
 var TimestampGenerator = require('./timestamp');
 var Utils = require('./utils');
+var Constants = require('./constants');
+var constants = new Constants();
 
 function createNewProjectFolderName(timestamp) {
     var randomAdj = Sentencer.make('{{ adjective }}');
@@ -19,8 +21,9 @@ function createNewFolder(isJam) {
     // use a custom timestamp, and use that to name the folder
     var timestampGen = new TimestampGenerator();
     var timestamp = timestampGen.getProjectTimestamp();
+    // TODO: fix this shitty pathing. Use the constant ROOT_PATH somehow.
     var shortDest = isJam ? 'Jams/' : 'Projects/';
-    var destination = '../../' + shortDest;
+    var destination = '../../../' + shortDest;
     var projName = createNewProjectFolderName(timestamp)
     var targetPath = destination + projName;
     var targetDir = path.join(__dirname, targetPath);
