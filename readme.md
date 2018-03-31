@@ -23,7 +23,7 @@ To accomplish this, I've laid out two standards to organize files for an easier 
 
 With these tools in hand, we can prevent senseless tragedies from happening time and time again.
 
-> _"This work is dedicated to all fallen music files. You are dearly missed."_
+> _"This work is dedicated to all lost music files. You are dearly missed."_
 
 ## USAGE
 
@@ -93,8 +93,7 @@ Each folder in this repository has a readme file, so we can see the intended pur
 ```
 Music Production (or whatever you name this thing)
 ├───Beats - Can contain MIDI files as well as sound files
-│   ├───OriginalBeats
-│   └───DrumParts
+│   └───DrumParts - Individual drum lines for kick/snare/hi-hat, etc.
 ├───Documentation - Guides/manuals for DAWs, VSTs, real equipment
 ├───FileManagement - Tools for managing project files
 │   ├───Scripts - Node.JS scripts that do the real work
