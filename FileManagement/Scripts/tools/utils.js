@@ -11,19 +11,19 @@ class Utils {
 
     getMarkdownFileContents(projectId) {
         var date = this.timestampGenerator.getSimpleDate();
-        var mdString = '' + CRLF;
+        var mdString = CRLF;
         mdString += '# ' + projectId + CRLF;
-        mdString += '' + CRLF;
+        mdString += CRLF;
         mdString += '_Started on ' + date + '_' + CRLF;
-        mdString += '' + CRLF;
-        mdString += '## NOTES' + CRLF;
-        mdString += '' + CRLF;
-        mdString += '...' + CRLF;
-        mdString += '' + CRLF;
+        mdString += CRLF;
         mdString += '## TO-DO' + CRLF;
-        mdString += '' + CRLF;
+        mdString += CRLF;
         mdString += '...' + CRLF;
-        mdString += '' + CRLF;
+        mdString += CRLF;
+        mdString += '## NOTES' + CRLF;
+        mdString += CRLF;
+        mdString += '...' + CRLF;
+        mdString += CRLF;
         
         return mdString;
     }

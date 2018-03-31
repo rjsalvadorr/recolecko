@@ -76,7 +76,7 @@ class FolderManager {
       var mdName = dirName + '.md';
 
       // If the only file in that folder is a markdown file of the same name,
-      // this is VERY LIKELY a generated file. And counts as "empty" for us.
+      // this is VERY VERY LIKELY a generated file. Which counts as "empty" for us.
       if(dirContent.length === 1 && dirContent[0] === mdName) {
         return true;
       }
