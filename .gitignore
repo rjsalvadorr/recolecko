@@ -30,5 +30,5 @@ Jams/**/*
 !FileManagement/Scripts/*.json
 !FileManagement/Scripts/tools/*.js
 !FileManagement/Scripts/tools/*.json
-!FileManagement/Scripts/PageContent/*.js
-!FileManagement/Scripts/PageContent/*.css
+!FileManagement/Scripts/js/*.js
+!FileManagement/Scripts/css/*.css

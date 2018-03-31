@@ -11,7 +11,7 @@ function colourRows() {
   });
 }
 
-function load() {
+function loadInventory() {
   data.forEach(function(file) {
       var tblRow = "<tr><td>" + file.projectId + "</td><td>" + file.name + "</td><td>" + file.tempo + "</td><td>" + file.version + "</td><td>" + file.type.toUpperCase() + "</td><td>" + file.path + "</td></tr>";
       $(tblRow).appendTo("#userdata tbody");

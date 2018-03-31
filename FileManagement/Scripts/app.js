@@ -14,12 +14,12 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 600,
-    height: 600,
+    width: 1024,
+    height: 768,
     autoHideMenuBar: true
   })
 
-  mainWindow.setMenu(null)
+  mainWindow.setMenu(null) // Removing menu bar
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
