@@ -20,7 +20,10 @@ function loadInventory() {
   $.dynatableSetup({
     dataset: {
       perPageDefault: 1000,
-      perPageOptions: [1000,1200,1500,1750]
+    },
+    features: {
+      paginate: false,
+      perPageSelect: false,
     }
   });
   var normalTable = $('#userdata');
