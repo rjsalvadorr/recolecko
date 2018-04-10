@@ -4,7 +4,7 @@ A file manager for creatives that work fast.
 
 ## OVERVIEW & DESIGN
 
-This project was prompted by the tragedy of losing dope beats in a maze of music files and folders. At the start of the project, the goal of all this was to enable a producer to:
+This project was prompted by the tragedy of losing dope beats in a maze of music files and folders. At the start of the project, the goal of all this was to enable a music producer to:
 
 1. Make projects often, while avoiding getting tangled in a mess of files.
 1. Keep track of all files derived from any project, and track the "lineage" of any musical file.
