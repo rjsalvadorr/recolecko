@@ -1,3 +1,0 @@
-# Projects
-
-Actual musical projects!

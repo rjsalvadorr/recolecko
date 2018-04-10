@@ -8,7 +8,7 @@ class Constants {
     var formatRegexUpper = 'WAV|MP3|MIDI|MID|RPP';
     var formatRegex = '(' + formatRegexLower + '|' + formatRegexUpper + ')';
 
-    this.ROOT_PATH = path.join(__dirname, '../../..');
+    this.ROOT_PATH = path.join(__dirname, 'wip-stuff');
     this.MUSIC_FOLDER_REGEX = new RegExp('[\/\\](Jams|Projects)[\/\\]' + idRegex + '-[\\w]+$');
     this.MUSIC_FILE_REGEX = new RegExp('^' + idRegex + '-[-\\w]+(-\\d{2,3}bpm)?(-\\d{1,2})?\\.' + formatRegex + '$');
     this.TABLE_HEADER_LIST = 'PROJECT_ID,NAME,TEMPO,VERSION,TYPE\r\n';

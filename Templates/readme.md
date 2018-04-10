@@ -1,3 +1,0 @@
-# Templates
-
-DAW project templates.

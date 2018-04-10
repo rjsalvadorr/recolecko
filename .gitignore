@@ -1,34 +1,3 @@
-# Ignore everything except for the main README files -----
 
-*
-!.gitignore
-!readme.md
-!/**/
-
-# Ignore files from individual projects -----
-
-Projects/**/*
-!Projects/*.md
-Jams/**/*
-
-# Include drum part files -----
-
-!Beats/DrumParts/*.md
-!Beats/DrumParts/*.mid
-!Beats/DrumParts/*.midi
-!Beats/DrumParts/*.mp3
-!Beats/OriginalBeats/*.md
-
-# Scripting files -----
-
-!FileManagement/**/readme.md
-!FileManagement/*.cmd
-!FileManagement/*.sh
-!FileManagement/inventory.html
-!FileManagement/Scripts/index.html
-!FileManagement/Scripts/*.js
-!FileManagement/Scripts/*.json
-!FileManagement/Scripts/tools/*.js
-!FileManagement/Scripts/tools/*.json
-!FileManagement/Scripts/js/*.js
-!FileManagement/Scripts/css/*.css
+node_modules/
+data/
