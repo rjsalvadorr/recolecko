@@ -42,7 +42,7 @@ class FolderManager {
       // use a custom timestamp, and use that to name the folder
       var timestampGen = new TimestampGenerator();
       var timestamp = timestampGen.getProjectTimestamp();
-      // TODO: fix this shitty pathing. Use the constant ROOT_PATH somehow.
+      // TODO: fix this shitty pathing. Use the constant APP_ROOT_PATH somehow.
       var shortDest = isJam ? 'Jams/' : 'Projects/';
       var destination = '../../../' + shortDest;
       var projName = this.createNewProjectFolderName(timestamp)
@@ -92,7 +92,7 @@ class FolderManager {
     };
 
     findEmptyFolders() {
-      var directoryList = getDirectoriesRecursive(constants.ROOT_PATH);
+      var directoryList = getDirectoriesRecursive(constants.APP_ROOT_PATH);
       var targetList = [];
       var currentDir = '';
       var isMarkedForDeletion = false;

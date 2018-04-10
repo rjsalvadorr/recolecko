@@ -5,9 +5,9 @@
 
 var electronRemote = require('electron').remote;
 
-var Utils = require('./tools/utils');
-var FolderManager = require('./tools/foldermanager');
-var searchFiles = require('./tools/filesearch');
+var Utils = require('./utils');
+var FolderManager = require('./foldermanager');
+var searchFiles = require('./filesearch');
 
 var outputTextarea = document.querySelector('#output');
 

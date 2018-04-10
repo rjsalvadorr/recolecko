@@ -19,6 +19,8 @@ function createWindow () {
     autoHideMenuBar: true
   })
 
+  // COMMENT THIS OUT WHEN DEVELOPING
+  // TODO: Find a way to dynamically set this?
   mainWindow.setMenu(null) // Removing menu bar
 
   // and load the index.html of the app.

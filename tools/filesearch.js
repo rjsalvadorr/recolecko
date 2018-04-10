@@ -63,7 +63,7 @@ var walkSync = function(dir, filelist) {
         }
         else {
             if(isMusicFile(file)) {
-                truncatedDir = dir.replace(constants.ROOT_PATH, '');
+                truncatedDir = dir.replace(constants.APP_ROOT_PATH, '');
                 filelist.push(path.join(truncatedDir, file));
             }
         }
@@ -84,7 +84,7 @@ var convertListToString = function(filenameList) {
 };
 
 function searchFiles() {
-    var fileList = walkSync(constants.ROOT_PATH);
+    var fileList = walkSync(constants.APP_ROOT_PATH);
     var fileListString = convertListToString(fileList);
     var hackyMusicData = [];
     fileList.forEach(function (fname) {
@@ -101,7 +101,7 @@ function searchFiles() {
 
     // Create data location if it doesn't exist
     var fs = require('fs');
-    var dataLocation = path.join(constants.ROOT_PATH, '/FileManagement/Scripts/data');
+    var dataLocation = path.join(constants.APP_ROOT_PATH, '/FileManagement/Scripts/data');
     if (!fs.existsSync(dataLocation)){
         fs.mkdirSync(dataLocation);
         console.log('Created \'FileManagement/Scripts/data/\' directory');
