@@ -21,7 +21,7 @@ function createWindow () {
 
   // COMMENT THIS OUT WHEN DEVELOPING
   // TODO: Find a way to dynamically set this?
-  mainWindow.setMenu(null) // Removing menu bar
+  // mainWindow.setMenu(null) // Removing menu bar
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

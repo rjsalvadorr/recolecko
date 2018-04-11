@@ -10,21 +10,75 @@ body {
 .btn--rj {
   font-size: 13px !important;
   background-color: #DDDDDD !important;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .btn--rj:hover {
   background-color: #FFFFFF !important;
 }
 
-#output {
+.btn--set-dir {
+  height: 32px;
+  line-height: 32px;
+  font-weight: normal;
+}
+
+.output--sm,
+.output--lg {
   box-sizing: border-box;
   background-color: #080808;
   font-family: monospace;
   width: 100%;
-  height: 150px;
   overflow-y: auto;
   border-radius: 5px;
   padding: 10px;
+}
+
+.output--sm {
+  /* Next 3 props match with button style */
+  padding: 0 1rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  
+  height: 32px;
+  line-height: 32px;
+  overflow: auto;
+}
+
+.output--lg {
+  height: 150px;
+}
+
+.settings-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 0.3rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.settings-wrapper .settings-label {
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.settings-wrapper .output--sm {
+  margin-left: 1rem;
+  width: auto;
+  flex-grow: 20;
+}
+
+.settings-wrapper .output--lg {
+  margin-left: 1rem;
+  margin-top: 0;
+  width: 20px;
+  flex-grow: 20;
 }
 
 /* end control panel styling */
