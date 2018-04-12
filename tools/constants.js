@@ -9,7 +9,7 @@ class Constants {
     var formatRegex = '(' + formatRegexLower + '|' + formatRegexUpper + ')';
 
     this.APP_ROOT_PATH = path.join(__dirname, '..');
-    this.DATA_PATH = path.join(APP_ROOT_PATH, 'data');
+    this.DATA_PATH = path.join(this.APP_ROOT_PATH, 'data');
     this.MUSIC_FOLDER_REGEX = new RegExp('[\/\\](Jams|Projects)[\/\\]' + idRegex + '-[\\w]+$');
     this.MUSIC_FILE_REGEX = new RegExp('^' + idRegex + '-[-\\w]+(-\\d{2,3}bpm)?(-\\d{1,2})?\\.' + formatRegex + '$');
     this.TABLE_HEADER_LIST = 'PROJECT_ID,NAME,TEMPO,VERSION,TYPE\r\n';

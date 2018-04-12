@@ -15,6 +15,29 @@ function bindClickFunction(selector, func) {
   document.querySelector(selector).addEventListener('click', func);
 }
 
+function createGenericPrintAction(initialMsg, actionFunc) {
+  return createPrintAction('#output', initialMsg, actionFunc, false)
+}
+
+function createPrintAction(outputSelector, initialMsg, actionFunc, overwrite) {
+  var outputElement = document.querySelector(outputSelector);
+  var newFunc = function () {
+    var outVal = actionFunc();
+    if (outVal) {
+      if (overwrite) {
+        outputElement.innerHTML = '';
+      }
+      outputElement.innerHTML += initialMsg;
+      outputElement.innerHTML += outVal + '\n';
+    }
+  };
+  return newFunc;
+}
+
+
+
+/////  Button Handlers  ////////////////////////////////////////////////////////
+
 function handleNewJamFolder() {
   outputTextarea.innerHTML += 'Creating new jam folder...\n';
 
@@ -25,7 +48,7 @@ function handleNewJamFolder() {
 
 function handleNewProjectFolder() {
   outputTextarea.innerHTML += 'Creating new project folder...\n';
-  
+
   var folderManager = new FolderManager();
   var outVal = folderManager.createNewFolder(false);
   outputTextarea.innerHTML += outVal + '\n';
@@ -41,7 +64,7 @@ function handleRemoveEmptyProjects() {
 
 function handleUpdateInventory() {
   outputTextarea.innerHTML += 'Updating inventory...\n';
-  
+
   var outVal = searchFiles();
   outVal += 'Inventory updated!';
   outputTextarea.innerHTML += outVal + '\n';
@@ -57,3 +80,25 @@ bindClickFunction('#btnNewProjectFolder', handleNewProjectFolder);
 bindClickFunction('#btnRemoveEmptyProjects', handleRemoveEmptyProjects);
 bindClickFunction('#btnUpdateInventory', handleUpdateInventory);
 bindClickFunction('#btnClearOutput', handleClearOutput);
+
+
+
+/////  Settings  ///////////////////////////////////////////////////////////////
+
+function openFolderBrowser() {
+  const { dialog } = require('electron').remote;
+
+  var path = dialog.showOpenDialog({
+    properties: ['openDirectory']
+  });
+  return path;
+}
+
+var actionFunc = createPrintAction('.settings-output--drafts', '', openFolderBrowser, true);
+bindClickFunction('#btn-set-drafts-dir', actionFunc);
+
+actionFunc = createPrintAction('.settings-output--projects', '', openFolderBrowser, true);
+bindClickFunction('#btn-set-projects-dir', actionFunc);
+
+actionFunc = createPrintAction('.settings-output--inventory', '', openFolderBrowser, true);
+bindClickFunction('#btn-set-inventory-dir', actionFunc);
