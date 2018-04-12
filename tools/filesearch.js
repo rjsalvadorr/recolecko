@@ -83,8 +83,8 @@ var convertListToString = function(filenameList) {
     return listString;
 };
 
-function searchFiles() {
-    var fileList = walkSync(constants.APP_ROOT_PATH);
+function searchFiles(targetDir) {
+    var fileList = walkSync(targetDir);
     var fileListString = convertListToString(fileList);
     var hackyMusicData = [];
     fileList.forEach(function (fname) {
@@ -101,11 +101,11 @@ function searchFiles() {
 
     // Create data location if it doesn't exist
     var fs = require('fs');
-    var dataLocation = path.join(constants.APP_ROOT_PATH, '/FileManagement/Scripts/data');
+    var dataLocation = constants.DATA_PATH;
     if (!fs.existsSync(dataLocation)){
         fs.mkdirSync(dataLocation);
-        console.log('Created \'FileManagement/Scripts/data/\' directory');
-        outString += 'Created \'FileManagement/Scripts/data/\' directory\n';
+        console.log('Created data directory');
+        outString += 'Created data directory\n';
     }
 
     // Write to files!
