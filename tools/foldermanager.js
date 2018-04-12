@@ -41,7 +41,7 @@ class FolderManager {
       if(!targetDir) {
         return 'Folder creation failed. Invalid directory path.';
       }
-      
+
       // create the folder!
       // use a custom timestamp, and use that to name the folder
       var timestampGen = new TimestampGenerator();
@@ -86,13 +86,16 @@ class FolderManager {
     // Filter folders based on regex
     isMusicFolder(filename) {
       if(filename.match(constants.MUSIC_FOLDER_REGEX)) {
-          return true;
+        return true;
       }
       return false;
     };
 
-    findEmptyFolders() {
-      var directoryList = getDirectoriesRecursive(constants.APP_ROOT_PATH);
+    findEmptyFolders(targetDirList) {
+      var directoryList = [];
+      for(var i = 0; i < targetDirList.length; i++) {
+        directoryList = directoryList.concat(getDirectoriesRecursive(targetDirList[i]));
+      }
       var targetList = [];
       var currentDir = '';
       var isMarkedForDeletion = false;
@@ -106,8 +109,11 @@ class FolderManager {
       return targetList;
     }
 
-    deleteEmptyFolders() {
-      var folderList = this.findEmptyFolders();
+    deleteEmptyFolders(targetDirList) {
+      if(!targetDirList || targetDirList.length === 0) {
+        return 'Folder deletion failed. Invalid directory for file search!';
+      }
+      var folderList = this.findEmptyFolders(targetDirList);
       var currentFolder = '';
       var outString = '';
 

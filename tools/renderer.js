@@ -22,6 +22,17 @@ var fs = fs || require('fs');
 var dataFilePath = constants.DATA_FILE_PATH;
 
 function saveData(appDataObj) {
+  // TODO: create list of dirs in "inventoryDirectories"
+  var dirList = [];
+  if(appDataObj.draftDirectory) {
+    dirList.push(appDataObj.draftDirectory);
+  }
+  if(appDataObj.projectsDirectory) {
+    dirList.push(appDataObj.projectsDirectory);
+  }
+  appDataObj.inventoryDirectories = dirList;
+  console.log('saveData', appDataObj);
+
   fs.writeFileSync(dataFilePath, JSON.stringify(appDataObj, null, 2));
   console.log('Saved data file');
 }
@@ -52,7 +63,8 @@ if (!fs.existsSync(dataFilePath)) {
   var initAppState = {
     draftDirectory: '',
     projectsDirectory: '',
-    inventoryDirectory: [],
+    extraDirectory: '',
+    inventoryDirectories: [],
   }
 
   saveData(initAppState);
@@ -111,10 +123,13 @@ function handleNewProjectFolder() {
 }
 
 function handleRemoveEmptyProjects() {
-  outputTextarea.innerHTML += 'Searching for empty projects...\n';
+  outputTextarea.innerHTML += 'Searching for empty projects...\n'
 
   var folderManager = new FolderManager();
-  var outVal = folderManager.deleteEmptyFolders();
+  var targetDirs = [];
+  targetDirs.push(appData.draftDirectory);
+  targetDirs.push(appData.projectsDirectory);
+  var outVal = folderManager.deleteEmptyFolders(targetDirs);
   outputTextarea.innerHTML += outVal + '\n';
 }
 
@@ -162,5 +177,5 @@ bindClickFunction('#btn-set-drafts-dir', actionFunc);
 actionFunc = createPrintAction('.settings-output--projects', '', openFolderBrowser, true, { appDataProp: 'projectsDirectory' });
 bindClickFunction('#btn-set-projects-dir', actionFunc);
 
-actionFunc = createPrintAction('.settings-output--inventory', '', openFolderBrowser, true, { appDataProp: 'inventoryDirectory' });
+actionFunc = createPrintAction('.settings-output--inventory', '', openFolderBrowser, true, { appDataProp: 'extraDirectory' });
 bindClickFunction('#btn-set-inventory-dir', actionFunc);
