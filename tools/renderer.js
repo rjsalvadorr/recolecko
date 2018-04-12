@@ -98,7 +98,7 @@ function handleNewJamFolder() {
   outputTextarea.innerHTML += 'Creating new jam folder...\n';
 
   var folderManager = new FolderManager();
-  var outVal = folderManager.createNewFolder(true);
+  var outVal = folderManager.createNewFolder(appData.draftDirectory);
   outputTextarea.innerHTML += outVal + '\n';
 }
 
@@ -106,7 +106,7 @@ function handleNewProjectFolder() {
   outputTextarea.innerHTML += 'Creating new project folder...\n';
 
   var folderManager = new FolderManager();
-  var outVal = folderManager.createNewFolder(false);
+  var outVal = folderManager.createNewFolder(appData.projectsDirectory);
   outputTextarea.innerHTML += outVal + '\n';
 }
 

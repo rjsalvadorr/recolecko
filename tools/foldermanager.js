@@ -37,30 +37,30 @@ class FolderManager {
       return folderName;
     }
 
-    createNewFolder(isJam) {
+    createNewFolder(targetDir) {
+      if(!targetDir) {
+        return 'Folder creation failed. Invalid directory path.';
+      }
+      
       // create the folder!
       // use a custom timestamp, and use that to name the folder
       var timestampGen = new TimestampGenerator();
       var timestamp = timestampGen.getProjectTimestamp();
-      // TODO: fix this shitty pathing. Use the constant APP_ROOT_PATH somehow.
-      var shortDest = isJam ? 'Jams/' : 'Projects/';
-      var destination = '../../../' + shortDest;
-      var projName = this.createNewProjectFolderName(timestamp)
-      var targetPath = destination + projName;
-      var targetDir = path.join(__dirname, targetPath);
+      var projName = this.createNewProjectFolderName(timestamp);
+      var projDir = path.join(targetDir, projName);
       var outString = '';
-  
-      if (!fs.existsSync(targetDir)){
-          fs.mkdirSync(targetDir);
-          console.log('Created \'' + shortDest + projName + '\'');
-          outString += 'Created \'' + shortDest + projName + '\'';
+
+      if (!fs.existsSync(projDir)){
+          fs.mkdirSync(projDir);
+          console.log('Created \'' + projDir + '\'');
+          outString += 'Created \'' + projDir + '\'';
       }
-  
+
       // create the readme template
       var utils = new Utils();
       var defaultMarkdownContent = utils.getMarkdownFileContents(projName);
       var filename = projName + '.md'
-      fs.writeFile(path.join(targetDir, filename), defaultMarkdownContent, function(err) {
+      fs.writeFile(path.join(projDir, filename), defaultMarkdownContent, function(err) {
           if(err) {
               console.log(err);
               return err;
