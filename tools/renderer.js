@@ -129,6 +129,7 @@ function handleRemoveEmptyProjects() {
   var targetDirs = [];
   targetDirs.push(appData.draftDirectory);
   targetDirs.push(appData.projectsDirectory);
+  
   var outVal = folderManager.deleteEmptyFolders(targetDirs);
   outputTextarea.innerHTML += outVal + '\n';
 }
@@ -136,7 +137,11 @@ function handleRemoveEmptyProjects() {
 function handleUpdateInventory() {
   outputTextarea.innerHTML += 'Updating inventory...\n';
 
-  var outVal = searchFiles();
+  var targetDirs = [];
+  targetDirs.push(appData.draftDirectory);
+  targetDirs.push(appData.projectsDirectory);
+
+  var outVal = searchFiles(targetDirs);
   outVal += 'Inventory updated!';
   outputTextarea.innerHTML += outVal + '\n';
   electronRemote.getCurrentWindow().reload();

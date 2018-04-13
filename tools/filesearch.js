@@ -1,4 +1,4 @@
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 var path = path || require('path');
 var fs = fs || require('fs');
 
@@ -8,7 +8,7 @@ var constants = new Constants();
 //////////
 
 // Parses filenames that match the regex
-var parseFilename = function(filePath) {
+var parseFilename = function (filePath) {
     var returnObj = {
         projectId: '',
         tempo: '',
@@ -22,17 +22,17 @@ var parseFilename = function(filePath) {
     var juicyChunks = juicyInfo[0].split('-');
     var finalIdx = juicyChunks.length - 1;
 
-    juicyChunks.forEach(function(chunk, idx) {
-        if(idx === 0 && (chunk.match(/^[0-9A-F]{3}[0-9A-Z]{2}$/))) {
+    juicyChunks.forEach(function (chunk, idx) {
+        if (idx === 0 && (chunk.match(/^[0-9A-F]{3}[0-9A-Z]{2}$/))) {
             returnObj.projectId = chunk;
-        } else if(chunk.match(/^\d{2,3}bpm$/)) {
+        } else if (chunk.match(/^\d{2,3}bpm$/)) {
             returnObj.tempo = chunk;
-        } else if(idx === finalIdx && chunk.match(/^\d{1,2}$/)) {
+        } else if (idx === finalIdx && chunk.match(/^\d{1,2}$/)) {
             returnObj.version = chunk;
         }
     });
 
-    var nameChunks = juicyChunks.filter(function(chunk) {
+    var nameChunks = juicyChunks.filter(function (chunk) {
         return chunk !== returnObj.projectId && chunk !== returnObj.tempo && chunk !== returnObj.version;
     })
     returnObj.name = nameChunks.join('-');
@@ -43,8 +43,8 @@ var parseFilename = function(filePath) {
 }
 
 // Filter filenames based on regex
-var isMusicFile = function(filename) {
-    if(filename.match(constants.MUSIC_FILE_REGEX)) {
+var isMusicFile = function (filename) {
+    if (filename.match(constants.MUSIC_FILE_REGEX)) {
         return true;
     }
     return false;
@@ -53,16 +53,16 @@ var isMusicFile = function(filename) {
 // See https://gist.github.com/kethinov/6658166
 // List all files in a directory in Node.js recursively in a synchronous fashion
 //
-var walkSync = function(dir, filelist) {
+var walkSync = function (dir, filelist) {
     var files = fs.readdirSync(dir);
     var truncatedDir = '';
     filelist = filelist || [];
-    files.forEach(function(file) {
+    files.forEach(function (file) {
         if (fs.statSync(path.join(dir, file)).isDirectory()) {
             filelist = walkSync(path.join(dir, file), filelist);
         }
         else {
-            if(isMusicFile(file)) {
+            if (isMusicFile(file)) {
                 truncatedDir = dir.replace(constants.APP_ROOT_PATH, '');
                 filelist.push(path.join(truncatedDir, file));
             }
@@ -71,7 +71,7 @@ var walkSync = function(dir, filelist) {
     return filelist;
 };
 
-var convertListToString = function(filenameList) {
+var convertListToString = function (filenameList) {
     var listString = 'PROJECT_ID,NAME,TEMPO,VERSION,TYPE,PATH\r\n';
     var musicData = {};
     var textLine = '';
@@ -83,8 +83,15 @@ var convertListToString = function(filenameList) {
     return listString;
 };
 
-function searchFiles(targetDir) {
-    var fileList = walkSync(targetDir);
+function searchFiles(targetDirList) {
+    if (!targetDirList || targetDirList.length === 0) {
+        return 'Inventory update failed. Invalid directory for file search!';
+    }
+    var fileList = [];
+    for (var i = 0; i < targetDirList.length; i++) {
+        fileList = fileList.concat(walkSync(targetDirList[i]));
+    }
+    // var fileList = walkSync(targetDir);
     var fileListString = convertListToString(fileList);
     var hackyMusicData = [];
     fileList.forEach(function (fname) {
@@ -102,15 +109,15 @@ function searchFiles(targetDir) {
     // Create data location if it doesn't exist
     var fs = require('fs');
     var dataLocation = constants.DATA_PATH;
-    if (!fs.existsSync(dataLocation)){
+    if (!fs.existsSync(dataLocation)) {
         fs.mkdirSync(dataLocation);
         console.log('Created data directory');
         outString += 'Created data directory\n';
     }
 
     // Write to files!
-    fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, function(err) {
-        if(err) {
+    fs.writeFile(path.join(dataLocation, 'music-inventory.csv'), fileListString, function (err) {
+        if (err) {
             console.log(err);
             return err;
         }
@@ -118,8 +125,8 @@ function searchFiles(targetDir) {
     console.log('Created or updated \'FileManagement/Scripts/data/music-inventory.csv\'');
     outString += 'Updated \'FileManagement/Scripts/data/music-inventory.csv\'\n';
 
-    fs.writeFile(path.join(dataLocation, 'music-inventory.json'), JSON.stringify(hackyMusicData, null, 2), function(err) {
-        if(err) {
+    fs.writeFile(path.join(dataLocation, 'music-inventory.json'), JSON.stringify(hackyMusicData, null, 2), function (err) {
+        if (err) {
             console.log(err);
             return err;
         }
@@ -128,8 +135,8 @@ function searchFiles(targetDir) {
     outString += 'Updated \'FileManagement/Scripts/data/music-inventory.json\'\n';
 
     var datafileString = 'var data = ' + JSON.stringify(hackyMusicData, null, 2) + ';\r\n';
-    fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileString, function(err) {
-        if(err) {
+    fs.writeFile(path.join(dataLocation, 'music-inventory-datafile.js'), datafileString, function (err) {
+        if (err) {
             console.log(err);
             return err;
         }
