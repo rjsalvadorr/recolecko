@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-app": "electron .",
-    "build-app": "electron-packager . recolecko --platform=win32,linux,darwin --out=build --overwrite"
+    "build-app": "electron-packager . recolecko --platform=win32,linux,darwin --out=build --overwrite --icon=img/icon.ico"
   },
   "author": "RJ Salvador",
   "license": "ISC",
