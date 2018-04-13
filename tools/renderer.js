@@ -176,6 +176,3 @@ bindClickFunction('#btn-set-drafts-dir', actionFunc);
 
 actionFunc = createPrintAction('.settings-output--projects', '', openFolderBrowser, true, { appDataProp: 'projectsDirectory' });
 bindClickFunction('#btn-set-projects-dir', actionFunc);
-
-actionFunc = createPrintAction('.settings-output--inventory', '', openFolderBrowser, true, { appDataProp: 'extraDirectory' });
-bindClickFunction('#btn-set-inventory-dir', actionFunc);
