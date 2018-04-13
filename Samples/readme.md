@@ -1,3 +1,0 @@
-# Samples
-
-Sample packs!
